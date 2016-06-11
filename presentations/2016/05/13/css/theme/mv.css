@@ -1,0 +1,529 @@
+@import url(../../fonts/IstokWeb.css);
+
+section.has-light-background, section.has-light-background h1, section.has-light-background h2, section.has-light-background h3, section.has-light-background h4, section.has-light-background h5, section.has-light-background h6 {
+  color: #f5f5f5; }
+
+/*********************************************
+ * GLOBAL STYLES
+ *********************************************/
+body {
+  font-family: 'IstokWeb', Helvetica, sans-serif;
+  background-color: #fff; 
+}
+
+.reveal {
+  font-family: 'IstokWeb', Helvetica, sans-serif;
+  font-size: 48px;
+  font-weight: bold;
+  color: #1C1C1C; 
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+::selection {
+  color: #fff;
+  background: #bee4fd;
+  text-shadow: none; 
+}
+
+/*
+.reveal .slides > section, .reveal .slides > section > section {
+  line-height: 1.3;
+  font-weight: inherit; 
+  width: auto;
+}
+
+.reveal.slide .slides > section, .reveal.slide .slides > section > section {
+  min-height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  position: absolute !important;
+  top: 0 !important;
+  align-items: center !important;
+}
+
+section > h1, section > h2 {
+  position: absolute !important;
+  top: 0 !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  left: 0 !important;
+  right: 0 !important;
+  text-align: center !important;
+}
+
+.print-pdf .reveal.slide .slides > section, .print-pdf .reveal.slide .slides > section > section {
+  min-height: 770px !important;
+  position: relative !important;
+}
+*/
+
+/*********************************************
+ * HEADERS
+ *********************************************/
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+  /* color: #7ab317; */
+  color: #7ab317;
+  background-color: transparent;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  text-shadow: none;
+  word-wrap: normal;
+  padding: 0px;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 2%;
+}
+
+.reveal h1 {
+  font-size: 1.75em; 
+}
+
+.reveal h2 {
+  font-size: 1.25em; 
+}
+
+.reveal h3 {
+  font-size: 1em; 
+}
+
+.reveal h4 {
+  font-size: 0.75em; 
+}
+
+.reveal h1.simple, .reveal h2.simple, 
+.reveal h3.simple, .reveal h4.simple, 
+.reveal h5.simple, .reveal h6.simple {
+  color: #999;
+}
+
+/* Slides with a background */
+.reveal .bkg h1, .reveal .bkg h2, 
+.reveal .bkg h3, .reveal .bkg h4, 
+.reveal .bkg h5, .reveal .bkg h6 {
+  color: #FFFFFF;
+  background-color: #7ab317;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: uppercase;
+  text-shadow: none;
+  /* word-wrap: break-word; */
+  word-wrap: normal;
+  padding: 16px;
+  padding-left: 24px;
+  padding-right: 24px;
+  margin-bottom: 8px;
+  display: inline-block;
+  width: auto;
+}
+
+.reveal img {  
+  /* position: absolute; */
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.reveal .centered h1, .reveal .centered h2,
+.reveal .centered h3, .reveal .centered h4,
+.reveal .centered h5, .reveal .centered h6 {
+    top: 32%;
+    display: block;
+    position: absolute;
+    left: 50%;
+    padding: 20px;
+    padding-bottom: 14px;
+    transform: translateX(-50%);
+}
+
+
+
+/*********************************************
+ * SECTIONS
+ *********************************************/
+
+.reveal .black {
+  background-color: black;
+}
+
+.reveal .gray {
+  background-color: #333;
+}
+
+.reveal .right {
+  margin-left: 22%;
+}
+
+.fullwidth {
+  width: 100%;
+}
+
+.reveal .slides > section, 
+.reveal .slides > section > section {
+    /* width: auto;*/ 
+    width: 100%;
+    height: 100%;
+    min-height: 100%
+}
+
+div.space5 {
+  margin-top: 5%;
+}
+
+div.space10 {
+  margin-top: 10%;
+}
+
+div.space15 {
+  margin-top: 15%;
+}
+
+div.space20 {
+  margin-top: 20%;
+}
+
+
+div.space25 {
+  margin-top: 25%;
+}
+
+div.space30 {
+  margin-top: 30%;
+}
+
+div.space40 {
+  margin-top: 40%;
+}
+
+div.space45 {
+  margin-top: 45%;
+}
+
+div.space60 {
+  margin-top: 60%;
+}
+
+
+/*********************************************
+ * OTHER
+ *********************************************/
+.reveal p {
+  margin: 20px 0;
+  line-height: 1.3; }
+
+/* Ensure certain elements are never larger than the slide itself */
+.reveal img, .reveal video, .reveal iframe {
+  max-width: 95%;
+  max-height: 95%; }
+
+.reveal strong, .reveal b {
+  font-weight: bold; }
+
+.reveal em {
+  font-style: italic; }
+
+.reveal ol, .reveal dl, .reveal ul {
+  display: inline-block;
+  text-align: left;
+  margin: 0 0 0 1em; }
+
+.reveal ol {
+  list-style-type: decimal; }
+
+.reveal ul {
+  margin-top: 5%;
+  list-style-type: disc; 
+  line-height: 1.45em;
+  color: #444;
+}
+
+.reveal ul ul {
+  list-style-type: square; }
+
+.reveal ul ul ul {
+  list-style-type: circle; }
+
+.reveal ul ul, .reveal ul ol, .reveal ol ol, .reveal ol ul {
+  display: block;
+  margin-left: 40px; }
+
+.reveal dt {
+  font-weight: bold; }
+
+.reveal dd {
+  margin-left: 40px; }
+
+.reveal q, .reveal blockquote {
+  quotes: none; }
+
+.reveal blockquote {
+  display: block;
+  position: relative;
+  width: 70%;
+  margin: 20px auto;
+  padding: 5px;
+  font-style: italic;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2); }
+
+.reveal blockquote p:first-child, .reveal blockquote p:last-child {
+  display: inline-block; }
+
+.reveal q {
+  font-style: italic; }
+
+.reveal pre {
+  display: block;
+  position: relative;
+  /* width: 90%; */
+  margin: 20px auto;
+  text-align: left;
+  font-family: monospace;
+  line-height: 1.2em;
+  word-wrap: break-word;
+  font-size: 0.50em;
+  box-shadow: 0px 0px 2px rgba(220, 220, 220, 1);
+}
+
+.reveal pre code {
+  padding: 2%;
+  /*font-size: 0.7em; */
+  background-color: rgba(248, 248, 248, 0.9);
+}
+
+.reveal pre code.big {
+  font-size: 120%;
+}
+
+.reveal table {
+  margin: auto;
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+.reveal table th {
+  font-weight: bold; }
+
+.reveal table th, .reveal table td {
+  text-align: left;
+  padding: 0.2em 0.5em 0.2em 0.5em;
+  border-bottom: 1px solid; }
+
+.reveal table tr:last-child td {
+  border-bottom: none; }
+
+.reveal sup {
+  vertical-align: super; }
+
+.reveal sub {
+  vertical-align: sub; }
+
+.reveal small {
+  display: inline-block;
+  font-size: 0.6em;
+  line-height: 1.2em;
+  vertical-align: top; }
+
+.reveal small * {
+  vertical-align: top; }
+
+/*********************************************
+ * LINKS
+ *********************************************/
+.reveal a {
+  color: #438901;
+  text-decoration: none;
+  -webkit-transition: color 0.15s ease;
+  -moz-transition: color 0.15s ease;
+  transition: color 0.15s ease; }
+
+.reveal a:hover {
+  color: #7ab317;
+  text-shadow: none;
+  border: none; }
+
+.reveal .roll span:after {
+  color: #fff;
+  background: #068ee9; }
+
+/*********************************************
+ * IMAGES
+ *********************************************/
+/*.reveal section img {
+  margin: 15px 0px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 4px solid #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); }*/
+
+.reveal a img {
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  transition: all 0.15s linear; }
+
+.reveal a:hover img {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #42affa;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.55); }
+
+/*********************************************
+ * NAVIGATION CONTROLS
+ *********************************************/
+.reveal .controls div.navigate-left, .reveal .controls div.navigate-left.enabled {
+  border-right-color: #42affa; }
+
+.reveal .controls div.navigate-right, .reveal .controls div.navigate-right.enabled {
+  border-left-color: #42affa; }
+
+.reveal .controls div.navigate-up, .reveal .controls div.navigate-up.enabled {
+  border-bottom-color: #42affa; }
+
+.reveal .controls div.navigate-down, .reveal .controls div.navigate-down.enabled {
+  border-top-color: #42affa; }
+
+.reveal .controls div.navigate-left.enabled:hover {
+  border-right-color: #8dcffc; }
+
+.reveal .controls div.navigate-right.enabled:hover {
+  border-left-color: #8dcffc; }
+
+.reveal .controls div.navigate-up.enabled:hover {
+  border-bottom-color: #8dcffc; }
+
+.reveal .controls div.navigate-down.enabled:hover {
+  border-top-color: #8dcffc; }
+
+/*********************************************
+ * PROGRESS BAR
+ *********************************************/
+.reveal .progress {
+  background: #d3fc92;
+  height: 14px;
+}
+
+.reveal .progress span {
+  background: #438901;
+  -webkit-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  -moz-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985); }
+
+/*********************************************
+ * SLIDE NUMBER
+ *********************************************/
+.reveal .slide-number {
+  color: #42affa; }
+
+.reveal section.transparent .slide-background.present {
+    opacity: 0.7;
+}
+
+.reveal .progress {
+    height: 7px;
+}
+
+/*********************************************
+ * MY STILES
+ *********************************************/
+
+.title h1, .title h2 {
+  width: 100%;
+  margin-left:auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.title h1 {
+  margin-top: 12%;
+  margin-bottom: 0px;
+}
+
+div.credits {
+    font-size: 60%;
+}
+
+div.credits p {
+    margin: 0;
+    font-size: 0.8em;
+}
+
+.low-left {
+    position: absolute;
+    bottom: 18%;
+    left: 0;
+}
+
+.low-right {
+    position: absolute;
+    bottom: 18%;
+    right: 0;
+}
+
+.top-right {
+    position: absolute;
+    right: 0;
+}
+
+
+/*********************************************
+ * FOOTER
+ *********************************************/
+
+.reveal footer {
+    position: absolute;
+    width: 100%;
+    bottom: -24px;
+}
+
+.reveal footer .details {
+  position: fixed;
+  left: 0;
+  bottom:20px;
+  font-weight: 500;
+  font-size: .6em;
+  z-index: 3;
+  color: #E0E0E0;
+  /* color: #929292; */
+  line-height: 1em;
+}
+
+.reveal footer a {
+  color: #B1C39F;
+}
+
+.reveal footer img {
+    float: right;
+    height: 80px;
+    width: 80px;
+}
+
+.reveal footer .details img {
+  position: fixed;
+  bottom: 10px;
+  height: 40px;
+  width: 40px;
+  left: 100%;
+  transform: translateX(-50px);
+}
+
+.reveal footer .details sup {
+  font-size: .7em;
+}
+
+.reveal footer div {
+    font-size: 50%;
+    line-height: 80px;
+    margin-left: 20px;
+}
+
+@media(max-width: 600px){
+  .reveal footer .details {
+    font-size: 2.5vw;
+  }
+  .reveal footer img {
+    display: none;
+  }
+}

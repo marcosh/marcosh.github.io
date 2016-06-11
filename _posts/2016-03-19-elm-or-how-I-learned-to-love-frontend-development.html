@@ -1,0 +1,804 @@
+---
+layout: presentation
+title:  "Elm or how I learned to love frontend development"
+date:   2016-03-19 16:20:00 +0200
+categories: [presentations]
+tags: elm frontend functional
+---
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>ELM</title>
+
+        <meta name="description" content="A set of common interfaces for HTTP messages">
+        <meta name="author" content="Marco Perone">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/mv.css" id="theme">
+        <link rel="stylesheet" href="css/style.css">
+
+        <!-- Code syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/github.css">
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+
+        <script src="js/mousePosition.js"></script>
+        <script src="js/mouseClicks.js"></script>
+        <script src="js/keyPresses.js"></script>
+        <script src="js/map.js"></script>
+        <script src="js/foldp.js"></script>
+        <script src="js/merge.js"></script>
+        <script src="js/talk.js"></script>
+        <script src="js/elm.js"></script>
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section data-background="img/logo-elm-flipped.png">
+                    <h1>ELM</h3>
+                    <h3>or how I learned to <img src="img/elm_heart.png" height="50px"> front-end development</h3>
+                </section>
+
+                <section>
+                    <h2>Who am I?</h2>
+                    <p class="fragment"><a href="http://twitter.com/marcoshuttle" target="_blank">@marcoshuttle</a> / <a href="mailto:m.perone@mvlabs.it">m.perone@mvlabs.it</a></p>
+                    <p class="fragment"><img src="img/mvlabs-whitebackground.jpg" height="130px"></p>
+                    <p class="fragment">PHP developer in my daily life</p>
+                    <p class="fragment">grew up as a mathematician</p>
+                    <p class="fragment">weakness for functional programming</p>
+                </section>
+
+                <section>
+                    <h2>Disclaimer</h2>
+                    <p class="fragment">I'm not an expert</p>
+                    <p class="fragment">Just loving ELM and wanting to share it</p>
+                </section>
+
+                <section>
+                    <h2>Who are you?</h2>
+
+                    <p class="fragment">Front end developers?</p>
+                    <p class="fragment">Functional programmers?</p>
+                    <p class="fragment">Both?</p>
+                    <p class="fragment">Tried ELM?</p>
+                    <p class="fragment">Running ELM in production?</p>
+                </section>
+
+                <section>
+                    <h2>What is ELM?</h2>
+                    <p class="fragment">
+                        Statically typed reactive functional programming in the browser
+                    </p>
+
+                    <aside class="notes">
+                        <p>Let's have a quick look at what these things are and mean</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>RUNS IN THE BROWSER</h2>
+                    <p class="fragment">Compiles to Html, Javascript and Css</p>
+                    <pre class="fragment"><code class="hljs" data-trim contenteditable>
+elm make Main.elm
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>STATIC TYPING</h2>
+
+                    <p class="fragment">Type of a variable is known at compile time</p>
+                    <p class="fragment">Errors catched at compile time</p>
+                    <p class="fragment">NO RUNTIME EXCEPTIONS!!</p>
+                    <p class="fragment">Enforced semantic versioning</p>
+                    <p class="fragment">Hot-swapping</p>
+
+                    <aside class="notes">
+                        <p>Easy refactoring</p>
+                        <p>No need for trivial testing</p>
+                        <p>Very helpful compile time error messages</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>FUNCTIONAL PROGRAMMING</h2>
+
+                    <p class="fragment">Making inputs and outputs explicit</p>
+
+                    <img src="img/function.png" class="fragment" style="max-height: 200px;">
+
+                    <aside class="notes">
+                        <p>The point is not functional programming because it is cool, but because it hepls solving problems</p>
+                        <p>Flow of informations is very explicit</p>
+                        <p>Nothing depends on the state of the application</p>
+                        <p>Same input implies same output</p>
+                    </aside>
+                </section>
+
+                <!--section>
+                    <h2>FUNCTIONAL HTML</h2>
+
+                    <p class="fragment">Building Html composing components</p>
+                    <p class="fragment">Do NOT mutate the DOM</p>
+                    <p class="fragment">Rebuilding the whole thing every time!</p>
+                    <p class="fragment">Tricks: diffing and lazy loading</p>
+                    <pre class="fragment"><code class="hljs" data-trim contenteditable>
+lazy : ( a -> Html ) -> a -> Html
+                    </code></pre>
+
+                    <aside class="notes">
+                        <p>Functions that map directly inputs to outputs help us because we can compare not by value, but by reference</p>
+                    </aside>
+                </section-->
+
+                <section>
+                    <h2>WE HAVE A LITTLE PROBLEM...</h2>
+                    <p class="fragment">If functions are stateless and variables are immutable, how can we interact with the real world?</p>
+
+                    <p class="fragment">Possible solutions:</p>
+                    <ul>
+                        <li class="fragment">Relax requirements</li>
+                        <li class="fragment">Play with function composition (monads)</li>
+                        <li class="fragment">Or ...</li>
+                </section>
+
+                <section>
+                    <h2>FUNCTIONAL REACTIVE PROGRAMMING</h2>
+                    <p class="fragment">Program paradigm oriented around data flows and the propagation of change</p>
+                    <p class="fragment">Time as first order citizen</p>
+                    <p class="fragment">Dynamic evolving values</p>
+                    <p class="fragment">Specify the dynamic behavior completely at the time of declaration</p>
+
+                    <aside class="notes">
+                        <p>removes the need to mutate variables</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>SIGNALS</h2>
+
+                    <p class="fragment">Similar to EventEmitters or Observables in Javascript</p>
+                    <p class="fragment">They exist for the entire lifetime of the program</p>
+                    <p class="fragment">They always have an initial value</p>
+
+
+                </section>
+
+                <section>
+                    <h2>EXAMPLES OF SIGNALS</h2>
+
+                    <div class="fragment">
+                        <pre><code class="hljs" data-trim contenteditable>
+main =
+
+  Signal.map show Mouse.position
+                        </code></pre>
+
+                        <div id="mouse-position" style=></div>
+                    </div>
+
+                    <script type="text/javascript">
+                        var div = document.getElementById('mouse-position');
+
+                        Elm.embed(Elm.MousePosition, div)
+                    </script>
+                </section>
+
+                <section>
+                    <h2>EXAMPLES OF SIGNALS</h2>
+
+                    <div class="fragment">
+                        <pre><code class="hljs" data-trim contenteditable>
+main =
+
+  Signal.map display Keyboard.presses
+
+
+
+display keyCode =
+
+  show ( Char.fromCode keyCode )
+                        </code></pre>
+
+                        <div id="key-presses" style=></div>
+                    </div>
+
+                    <script type="text/javascript">
+                        var div = document.getElementById('key-presses');
+
+                        Elm.embed(Elm.KeyPresses, div)
+                    </script>
+                </section>
+
+                <section>
+                    <h2>SIGNALS IN ELM</h2>
+
+                    <p class="fragment">Only "real" signals</p>
+                    <p class="fragment">Not possible to create or destroy a signal, not to use signals of signals</p>
+                    <p class="fragment">Signals are connected setting up a static processing network</p>
+
+                    <aside class="notes">
+                        <p>Fixed set of inputs receives messages that propapagate through the network, leading to output</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>SIGNAL GRAPH</h2>
+
+                    <img class="fragment" src="img/signals.png">
+                </section>
+
+                <section>
+                    <h2>INPUT</h2>
+
+                    <p class="fragment">Signals from the world</p>
+                    <p class="fragment">We are not in control of changing the value, the value is changing everything else</p>
+
+                    <aside class="notes">
+                        <p>We are not in control of passing the information around, just of the flow</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>TRANSFORMATIONS</h2>
+                    <pre class="fragment"><code class="hljs" data-trim contenteditable>
+map : ( a -> b ) -> Signal a -> Signal b
+                    </code></pre>
+
+                    <div id="signal-map" class="fragment"></div>
+
+                    <script type="text/javascript">
+                        var div = document.getElementById('signal-map');
+
+                        Elm.embed(Elm.SignalMap, div)
+                    </script>
+                </section>
+
+                <section>
+                    <h2>STATE</h2>
+                    <pre class="fragment"><code class="hljs" data-trim contenteditable>
+foldp : ( a -> b -> b ) -> b -> Signal a
+
+  -> Signal b
+                    </code></pre>
+
+                    <p class="fragment">Application state all in one place</p>
+                    <p class="fragment">Save and undo become easy</p>
+
+                    <aside class="notes">
+                        <p>( Input -> Current state -> New State ) -> Initial value -> Input values -> Return values</p>
+                        <p>Application state lives all in one big foldp</p>
+                        <p>Centralized data store ensures consistency</p>
+                        <p>Same idea as in Om and Flux</p>
+                        <p>Single source of truth -> no need to synchronize between components</p>
+                        <p>Time travel debugger</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>STATE</h2>
+
+                    <div id="signal-foldp"></div>
+
+                    <script type="text/javascript">
+                        var div = document.getElementById('signal-foldp');
+
+                        Elm.embed(Elm.SignalFoldp, div)
+                    </script>
+                </section>
+
+                <section style="padding-top: 0px;">
+                    <h2>MERGE</h2>
+
+                    <pre class="fragment"><code class="hljs" data-trim contenteditable>
+merge : Signal a -> Signal a -> Signal b
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>MERGE</h2>
+
+                    <div id="signal-merge"></div>
+
+                    <script type="text/javascript">
+                        var div = document.getElementById('signal-merge');
+
+                        Elm.embed(Elm.SignalMerge, div)
+                    </script>
+                </section>
+
+                <section>
+                    <h2>ELM ARCHITECTURE</h2>
+
+                    <p class="fragment">Simple pattern for infinitely nestable components</p>
+                    <p class="fragment">Great for modularity, code reuse and testing</p>
+
+                    <aside class="notes">
+                        <p>Signals are implementation detail</p>
+                        <p>Naturally emerged from the language</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>MODULARITY</h2>
+                    <p class="fragment"  data-fragment-index="2">Hide implementation details</p>
+                    <p class="fragment"  data-fragment-index="3">Expose just what you need</p>
+                    <br>
+                    <h2 class="fragment" data-fragment-index="1">EXTENSIBILITY</h2>
+                    <p class="fragment" data-fragment-index="4">Ability to combine modules one with the other</p>
+
+                    <aside class="notes">
+                        <p>To make things modular, the major strategy is to create abstractions that hide implementation details</p>
+                        <p>In ELM abstraction boundaries are strong, hence you can not inspect the structure of arbitrary values</p>
+                        <p>Extensibility is approached through nesting</p>
+                        <p>Nesting actually means delegation</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>ELM ARCHITECTURE PILLARS</h2>
+
+                    <p class="fragment">Model</p>
+                    <p class="fragment">View</p>
+                    <p class="fragment">Update</p>
+                </section>
+
+                <section>
+                    <h2>OUR APPLICATION</h2>
+
+                    <img src="img/slides.png">
+                </section>
+
+                <section>
+                    <h2>MODEL</h2>
+
+                    <p class="fragment">Data structure representing the state of the component</p>
+                    <p class="fragment">Single source of truth</p>
+                </section>
+
+                <section>
+                    <h2>MODEL</h2>
+
+                    <pre><code class="hljs" data-trim contenteditable>
+type alias Talk =
+
+  { title : String
+
+  , description : String
+
+  , speaker : String
+
+  }
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>VIEW</h2>
+
+                    <pre class="fragment"><code class="hljs" data-trim contenteditable>
+view : Model -> Html
+                    </code></pre>
+
+                    <p class="fragment">No mutation of the DOM</p>
+
+                    <aside class="notes">
+                        <p>Freedom for optimization</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>VIEW</h2>
+
+                    <pre><code class="hljs" data-trim contenteditable>
+view : Talk -> Html
+
+view talk =
+
+  div [ class "talk" ]
+
+    [ div [] [ text ( talk.title ++
+
+      " by " ++ talk.speaker )]
+
+    , div [] [ text talk.description ]
+
+    ]
+                    </code></pre>
+
+                    <aside class="notes">
+                        <p>Code entirely declarative</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <div class="talk"><div><a href="https://joind.in/talk/88c3f" class="title" target="_blank">Elm or how I learned to love front-end development</a> by <span>Marco Perone</span></div><div>Front-end development is rapidly evolving, with new frameworks coming and going at a crazy pace. Among the many options, Elm stands out as one of the most original and promising approaches: it combines the principles of reactive programming with the elegance of strongly typed functional programming, yet providing a seamless integration with javascript code. In this talk ...</div></div>
+                </section>
+
+                <section>
+                    <h2>UPDATE</h2>
+
+                    <pre class="fragment"><code class="hljs" data-trim contenteditable>
+type Action
+
+  = FirstAction
+
+  | SecondAction
+
+  | ThirdAction
+
+
+
+update : Action -> Model -> Model
+                    </code></pre>
+
+                    <p class="fragment">Clear representation of how the model can be transformed</p>
+
+                    <aside class="notes">
+                        <p>Action represents what can happen to the model</p>
+                        <p>Next step of what happens to the model</p>
+                        <p>Business logic is a sequence of actions</p>
+                        <p>Event sourcing</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <pre><code class="hljs" data-trim contenteditable>
+type Action
+
+  = ClickTitle
+
+  | ClickDescription
+
+
+update : Action -> Talk -> Talk
+
+update action talk =
+
+  case action of
+
+    ClickDescription ->
+
+      { talk | description =
+
+        "We got a new description!" }
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>ACTIONS IN ACTION</h2>
+
+                    <div id="talk" class="fragment"></div>
+
+                    <script type="text/javascript">
+                        var div = document.getElementById('talk');
+
+                        Elm.embed(Elm.TalkMain, div)
+                    </script>
+                </section>
+
+                <section>
+                    <h2>ALL TOGETHER</h2>
+
+                    <div class="fragment">
+                        <p>from</p>
+
+                        <img src="img/flow.png">
+                    </div>
+
+                    <div class="fragment">
+                        <p>to</p>
+
+                        <img src="img/flow-signals.png">
+                    </div>
+
+                    <aside class="notes">
+                        <p>Whenever we receive an action, we update the model</p>
+                        <p>Whenever the model changes, we update the the view</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>LET'S HAVE ANOTHER ROUND</h2>
+
+                    <aside class="notes">
+                        <p>How do we interact with the world?</p>
+                        <p>Side effects (a.k.a. the real world) are present</p>
+                        <p>Instead of side-effects, we treat them as managed effects (i.e. represent them as data)</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>PORTS</h2>
+
+                    <img src="img/hexa.png">
+
+                    <p class="fragment">Mechanism for sending messages in and out of ELM</p>
+
+                    <aside class="notes">
+                        <p>The hexagon is our application, ...</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>INCOMING PORTS</h2>
+
+                    <p class="fragment">Passing messages from Javascript to ELM</p>
+
+                    <pre class="fragment"><code class="hljs" data-trim contenteditable>
+port addTalk : Signal (
+
+  Title, Description, Author )
+                    </code></pre>
+
+                    <pre class="fragment"><code class="hljs" data-trim contenteditable>
+myApp.ports.addTalk.send([
+
+  "ELM or how I learned to love ...",
+
+  "Front-end development is rapidly ...",
+
+  "Marco Perone"
+
+]);
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>OUTGOING PORTS</h2>
+
+                    <p class="fragment">Passing messages from ELM to JavaScript</p>
+
+                    <pre class="fragment"><code class="hljs" data-trim contenteditable>
+port requestTalks : Signal EventName
+
+port requestTalks = signalOfEventName
+                    </code></pre>
+
+                    <pre class="fragment"><code class="hljs" data-trim contenteditable>
+myApp.ports.requestTalks.subscribe(
+
+  retrieveTalks);
+
+
+function retrieveTalks (eventName) {
+
+  ...
+
+}
+                    </code></pre>
+
+                    <aside class="notes">
+                        <p>It is also possible to unsubscribe from a port</p>
+                        <p>This are low level structures, how can we abstract over them?</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>TASKS</h2>
+
+                    <p class="fragment">Abstraction to model side-effects handled by the runtime</p>
+                    <p class="fragment">Way to describe asynchronous operations that may fail</p>
+
+                    <aside class="notes">
+                        <p>Examples: http, storage</p>
+                        <p>They work as light-weight threads -> multiple of them running at the same time, runtime will hop between them</p>
+                        <p>Similar concept to promises in JavaScript</p>
+                        <p>Can be chained</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>TASKS LIFECYCLE</h2>
+
+                    <div style="position:relative; width:500px; height:300px; margin:0 auto;">
+                        <span class="fragment fade-in" data-fragment-index="1">
+                            <img src="img/task1.png" width="450" height="300" class="fragment fade-out" style="position:absolute;top:0;left:0;" data-fragment-index="2">
+                        </span>
+                        <span class="fragment fade-in" data-fragment-index="2">
+                            <img src="img/task2.png" width="450" height="300" class="fragment fade-out" style="position:absolute;top:0;left:0;" data-fragment-index="3">
+                        </span>
+                        <span class="fragment fade-in" data-fragment-index="3">
+                            <img src="img/task3.png" width="500" height="300" style="position:absolute;top:0;left:0;">
+                        </span>
+                    </div>
+
+                    <p class="fragment" data-fragment-index="1">Tasks describe operations that could be performed in the future</p>
+                    <p class="fragment" data-fragment-index="2">To perform a task we hand it to a port</p>
+                </section>
+
+                <section>
+                    <h2>TASKS</h2>
+
+                    <pre><code class="hljs" data-trim contenteditable>
+retrieveTalks : String 
+
+  -> Task Http.Error Action
+
+retrieveTalks uri =
+
+  get decoder uri
+
+  |> Task.map TalksRetrieved
+                    </code></pre>
+
+                    <aside class="notes">
+
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>MAILBOXES</h2>
+
+                    <pre class="fragment"><code class="hljs" data-trim contenteditable>
+type alias Mailbox a =
+
+  { address : Address a
+
+  , signal : Signal a
+
+  }
+
+
+mailbox : a -> Mailbox a
+                    </code></pre>
+
+                    <aside class="notes">
+                        <p>A mailbox is a signal with an addresss</p>
+                        <p>We can send messages to the address</p>
+                        <p>The signal updates whenever a message is received</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>TASKS LIFECYCLE WITH MAILBOXES</h2>
+
+                    <div style="position:relative; width:800px; height:480px; margin:0 auto;">
+                        <span class="fragment fade-in" data-fragment-index="1">
+                            <img src="img/task4.png" width="670" height="480" class="fragment fade-out" style="position:absolute;top:0;left:0;" data-fragment-index="2">
+                        </span>
+                        <span class="fragment fade-in" data-fragment-index="2">
+                            <img src="img/task5.png" width="800" height="480" class="fragment fade-out" style="position:absolute;top:0;left:0;" data-fragment-index="3">
+                        </span>
+                        <span class="fragment fade-in" data-fragment-index="3">
+                            <img src="img/task6.png" width="800" height="480" style="position:absolute;top:0;left:0;">
+                        </span>
+                    </div>
+
+                    <aside class="notes">
+                        <p>This is still too low level, we can abstract some more</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>ELM ARCHITECTURE AND TASKS</h2>
+
+                    <p class="fragment">Asynchronous operations modelled with <code class="hljs" style="display: inline">Effects Action</code></p>
+                    <p class="fragment">End result of execution is an Action that will be routed through the update function</p>
+                </section>
+
+                <section>
+                    <h2>ELM ARCHITECTURE AND TASKS</h2>
+
+                    <p class="fragment"><code class="hljs" style="display: inline">Model</code> is replaced by <code class="hljs" style="display: inline">( Model, Effects Action )</code></p>
+
+                    <pre class="fragment"><code class="hljs" data-trim contenteditable>
+update : Action -> Model
+
+  -> ( Model, Effects Action )
+                    </code></pre>
+                </section>
+
+                <section>
+                    <pre><code class="hljs" data-trim contenteditable>
+type Action
+
+  = ConfRetrieved ( Maybe Conferences )
+
+  | RetrieveTalks
+
+
+
+update action joindin =
+
+  case action of
+
+    ConfRetrieved maybeConf ->
+
+      ( addConferences joindin maybeConf
+
+      , task ( succeed RetrieveTalks )
+
+      )
+                    </code></pre>
+                </section>
+
+                <section>
+                    <iframe data-src="http://slides.mvlabs.it" height="800px" width="1200px"></iframe>
+                </section>
+
+                <!--section>
+                    <h2>WANT TO TRY ELM?</h2>
+
+                    <p class="fragment">Try it on a specific problem, a small component</p>
+                    <p class="fragment">Run small experiments</p>
+                    <p class="fragment">Switch gradually (through React?)</p>
+                </section-->
+
+                <section>
+                    <h2>CREDITS</h2>
+
+                    <p><a href="https://github.com/yang-wei/elmflux">https://github.com/yang-wei/elmflux</a></p>
+                </section>
+
+                <section>
+                    <h2>RESOURCES</h2>
+
+                    <p><a href="http://elm-lang.org">elm-lang.org</a></p>
+                    <p><a href="https://github.com/evancz/elm-architecture-tutorial">github.com/evancz/elm-architecture-tutorial</a></p>
+                    <p><a href="http://www.elm-tutorial.org/">www.elm-tutorial.org</a></p>
+                    <p><a href="http://www.elmcast.io/">www.elmcast.io</a></p>
+                    <p><a href="http://www.elmweekly.nl/">www.elmweekly.nl</a></p>
+                    <p><a href="http://www.elmbark.com">www.elmbark.com</a></p>
+                </section>
+
+                <section>
+                    <h2>THANKS!</h2>
+                    <h2>SPEAKERS <img src="img/elm_heart.png" height="100px"> FEEDBACK!</h2>
+                    <p><a href="http://twitter.com/marcoshuttle" target="_blank">@marcoshuttle</a> / <a href="mailto:m.perone@mvlabs.it">m.perone@mvlabs.it</a></p>
+                    <img src="img/creative_commons.png" style="position: relative; right: 250px; top: 200px; height: 200px">
+                </section>
+            </div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+
+            // Full list of configuration options available at:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: false,
+                progress: true,
+                history: true,
+                center: true,
+
+                transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+                // Optional reveal.js plugins
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true },
+                    { src: 'plugin/notes/notes.js', async: true }
+                ]
+            });
+
+        </script>
+
+    </body>
+</html>
