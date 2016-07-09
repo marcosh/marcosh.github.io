@@ -116,6 +116,8 @@ applies recursively every event, starting from `initialState`, using at every st
 
 that does exactly what the `update` function in the standard Elm Architecture does.
 
+If you'd like to see a working application built using this approach, I created a very simple one. You could find the code [here](https://github.com/marcosh/elm-escqrs/blob/master/EsMain.elm).
+
 ## Conclusion
 
 Event sourcing is somehow already present in the Elm Architecture, but not at a userland level. Anyway, as we saw, it is quite straightforward to bring it at the user level.
