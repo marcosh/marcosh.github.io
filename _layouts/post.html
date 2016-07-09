@@ -1,6 +1,8 @@
 ---
 layout: default
 comments: false
+pageUrl: 'http://marcosh.github.io/'
+pageIdentifier: 'home'
 ---
 <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
@@ -14,7 +16,7 @@ comments: false
   </div>
 
   {% if page.comments %}
-    {% include disqus.html %}
+    {% include disqus.html pageUrl=page.pageUrl pageIdentifier=page.pageIdentifier %}
   {% endif %}
 
 </article>
