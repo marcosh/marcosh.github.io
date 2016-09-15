@@ -25,7 +25,7 @@ In a relational database we can see foreign keys between tables as relations. Fo
 
 In other words we could visualize our database as a directed graph, where the vertices are the tables of the database and there is an edge going from table `A` to table `B` if there is a foreign key in `A` referencing the table `B`.
 
-To obtain the data necessary to generate this graph, we could use the following query
+To obtain the data necessary to generate this graph, we could use the following query (in [PostgreSQL](https://www.postgresql.org/))
 
     SELECT
         tc.table_name,
