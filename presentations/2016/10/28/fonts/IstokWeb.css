@@ -1,0 +1,27 @@
+@font-face {
+    font-family: 'IstokWeb';
+    src: url('IstokWeb-Regular-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'IstokWeb';
+    src: url('IstokWeb-Italic-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'IstokWeb';
+    src: url('IstokWeb-Bold-webfont.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'IstokWeb';
+    src: url('IstokWeb-BoldItalic-webfont.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}

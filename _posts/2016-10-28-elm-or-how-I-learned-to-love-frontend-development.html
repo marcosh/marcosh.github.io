@@ -1,0 +1,841 @@
+---
+layout: presentation
+title:  "Elm or how I learned to love frontend development"
+date:   2016-10-28 13:35:00 +0200
+categories: [presentations]
+tags: elm frontend functional
+---
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>ELM</title>
+
+        <meta name="description" content="Elm or how I learned to love frontend development">
+        <meta name="author" content="Marco Perone">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/mv.css" id="theme">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/hanoi.css">
+
+        <!-- Code syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/github.css">
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+
+        <script src="js/hanoi.js"></script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section data-background="img/logo-elm-flipped.png">
+                    <h1>ELM</h1>
+                    <h3>or how I learned to<br> <img src="img/elm_heart.png" height="150px"><br> front-end development</h3>
+                </section>
+
+                <section>
+                    <h2>Who am I?</h2>
+                    <div class="fragment">
+                        <div style="width: 50%; float: left;">
+                            <img src="img/me.png" height="250px;">
+                        </div>
+                        <div style="width: 50%; float: right;">
+                            <p>Marco Perone</p>
+                            <p><a href="http://twitter.com/marcoshuttle" target="_blank">@marcoshuttle</a> / <a href="mailto:m.perone@mvlabs.it">m.perone@mvlabs.it</a></p>
+                        </div>
+                    <p class="fragment" style="padding-top: 50px; clear: both;"><img src="img/mva-logo.png" height="130px"></p>
+
+                    <aside class="notes">
+                        <p>PHP developer in my daily life</p>
+                        <p>find the time to explore new things</p>
+                    </aside>
+                </section>
+
+                <!--section>
+                    <h2>Nota</h2>
+                    <p class="fragment">Non sono un esperto</p>
+                    <p class="fragment">Entusiasta di Elm</p>
+                </section-->
+
+                <!--section>
+                    <h2>Who are you?</h2>
+
+                    <p class="fragment">Front-end developers?</p>
+                    <p class="fragment">Functional programmers?</p>
+                    <p class="fragment">Tried Elm?</p>
+                    <p class="fragment">Use Elm regularly?</p>
+                </section-->
+
+                <section>
+                    <h2>What is Elm?</h2>
+
+                    <p class="fragment">Programming language</p>
+                    <ul>
+                        <li class="fragment">runs in the browser</li>
+                        <li class="fragment">functional</li>
+                        <li class="fragment">statically typed</li>
+                    </ul>
+                </section>
+
+                <section data-background="img/wood.jpg">
+                    <h2>Runs in the browser</h2>
+
+                    <pre class="fragment"><code class="hljs" data-trim contenteditable>
+elm make Main.elm
+                    </code></pre>
+
+                    <aside class="notes">
+                        <p>Compiles to html, css and javascript</p>
+                        <p>Write your web application in just one language</p>
+                        <p>Compile code -> output as html or js</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Your new friend the compiler</h2>
+
+<pre class="fragment"><code class="hljs no-highlight compiler" data-trim contenteditable data-noescape>
+<span style="color: rgb(0, 168, 198);">-- NICE TO MEET YOU ---------------------------------------</span>
+</code></pre>
+
+                    <aside class="notes">
+                        <p>Not only there to catch bugs, but to help understand where bugs are</p>
+                        <p>Compiler driver development -> very short feedback cycle</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Friendly error messages</h2>
+
+<pre class="fragment"><code class="hljs no-highlight" data-trim contenteditable data-noescape>
+<span class="variable">message</span> <span class="syntax">=</span> <span class="string">"hello everybody!"</span>
+
+<span class="variable">main</span> <span class="syntax">=</span> <span class="function">text</span> <span class="variable">mesage</span>
+</code></pre>
+
+<pre class="fragment"><code class="hljs no-highlight compiler" data-trim contenteditable data-noescape>
+<span style="color: rgb(0, 168, 198);">-- NAMING ERROR -------------------------------------------</span>
+<span style="color: rgb(213, 32, 12);"></span>
+Cannot find variable `mesage`
+<span style="color: rgb(213, 32, 12);"></span>
+<span style="color: rgb(154, 154, 154);">7|</span> <span style="color: rgb(154, 154, 154);">  text mesage</span>
+<span style="color: rgb(213, 32, 12);">          ^^^^^^</span>
+Maybe you want one of the following?
+<span style="color: rgb(213, 32, 12);"></span>
+<span style="color: rgb(154, 154, 154);">    message</span>
+</code></pre>
+
+                    <aside class="notes">
+                        <p>Elm always provides every information it can retrieve about your error, even providing hints on common mistakes</p>
+                        <!--p>The is even a [repo](https://github.com/elm-lang/error-message-catalog/) where you can suggest improvements of error messages</p-->
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>No runtime exceptions</h2>
+
+                    <img src="img/undefinedNotFunction.png" class="fragment" width="800px">
+
+                    <aside class="notes">
+                        <p>End user experience is not compromised by code problems</p>
+                        <p>Code is much more reliable</p>
+                        <p>Once it compiles, you can trust your code to run (the fact that it is doing exactly what you want it to is another thing...)</p>
+                        <p>How does the compiler achieve that?</p>
+                    </aside>
+                </section>
+
+                <section data-background="img/wood.jpg">
+                    <h2>Functional programming</h2>
+                </section>
+
+                <section>
+                    <h2>Function</h2>
+
+                    <blockquote class="fragment">A sequence of program instructions that perform a specific task, packaged as a unit</blockquote>
+
+                    <aside class="notes">
+                        <p>Functional programming uses functions</p>
+                        <p>What are actually functions?</p>
+                        <p>Standard way of looking at the concept, actually defines a subroutine</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Function</h2>
+
+<pre><code class="hljs javascript" data-trim contenteditable>
+function doSomething(arguments)
+{
+    result = someOperationOn(arguments);
+
+    return result;
+}
+</code></pre>
+                    <aside class="notes">
+                        <p>In the code we usually see and write something like this</p>
+                        <p>Has arguments, returns result</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Function</h2>
+
+                    <img src="img/function-without-contexts.png" width="728" height="499">
+
+                    <aside class="notes">
+                        <p>We would like to think to it like something that takes an input and returns and output</p>
+                        <p>Actually this is not a faithfully/correct representation</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Function</h2>
+
+                    <img src="img/function-with-input-context.png" width="728" height="499">
+
+                    <aside class="notes">
+                        <p>Often to perform what the function needs to do we need to access the application state</p>
+                        <p>Think for example to global variables, `this` keyword</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Function</h2>
+
+                    <img src="img/function-with-contexts.png" width="728" height="499">
+
+                    <aside class="notes">
+                        <p>Sometimes a function to be useful needs to alter the state of the application</p>
+                        <p>Think for example to http calls, writing to file stytem, database</p>
+                        <p>Two sets of inputs, two sets of outputs</p>
+                        <p>Wouldn't it be easier if we had a single extry point for inputs and a single exit for outputs?</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Function</h2>
+
+                    <img src="img/pure-function.png" width="1142" height="499">
+
+                    <aside class="notes">
+                        <p>Functional programming requires you to be explicit about the inputs and the outputs of your functions</p>
+                        <p>This result in a much bigger clarity of what a function requires and can do</p>
+                        <!--p>No need to watch at the actual implementation to understand what the function actually needs and what it interacts with</p-->
+                        <p>Function can not interact directly with the application state. It can only describe what needs to be changed</p>
+                        <p>Inversion of control: function returns to the caller its output and let it decides what to do with it</p>
+                        <p>Since we avoid any dependency on the application state, easily testable, cacheable and parallelizable</p>
+                    </aside>
+                </section>
+
+                <!--section>
+                    <h2>Deep thought</h2>
+
+<pre class="fragment"><code class="hljs javascript" data-trim contenteditable data-noescape>
+function ultimateQuestion(life, universe, everything) <span class="fragment">= 42</span>
+</code></pre>
+
+                    <aside class="notes">
+                        <p>If we extremize things...</p>
+                        <p>In this case the answer is just an integer</p>
+                    </aside>
+                </section-->
+
+                <section>
+                    <h2>Example</h2>
+
+<pre><code class="hljs javascript" data-trim contenteditable>
+var specialIndex = 'key';
+
+function setSpecialIndex(object, value)
+{
+    object[specialIndex] = value;
+
+    return object;
+}
+</code></pre>
+
+                    <aside class="notes">
+                        <p>We are using global state (specialIndex)</p>
+                        <p>We are mutating state (object) -> we are losing the informations that were present in `object[specialIndex]`</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>In Elm</h2>
+
+<pre><code class="hljs no-highlight" data-trim contenteditable data-noescape>
+<span class="variable">specialIndex</span> <span class="syntax">=</span> <span class="string">"key"</span>
+
+<span class="function">setSpecialIndex</span> <span class="variable">object</span> <span class="variable">index</span> <span class="">value</span> <span class="syntax">=</span>
+    <span class="syntax">{</span> <span class="variable">object</span> <span class="syntax">|</span> <span class="variable">index</span> <span class="syntax">=</span> <span class="variable">value</span> <span class="syntax">}</span>
+</code></pre>
+                    <aside class="notes">
+                        <p>We are explicitely receiving the key as input</p>
+                        <p>We are not mutating `object` but we are return a new/cloned copy</p>
+                    </aside>
+                </section>
+
+                <!--section>
+                    <h2>Functional programming</h2>
+
+                    <div>
+                        <iframe src="http://127.0.0.1:3000/#zoom=150" width="800px" height="500px"></iframe>
+                    </div>
+                </section-->
+
+                <section>
+                    <h2>Immutability</h2>
+
+                    <blockquote class="fragment">State can not be modified after it is created</blockquote>
+
+                    <aside class="notes">
+                        <p>A side effect of pure functions</p>
+                        <p>Once we have assigned a value to a variable, we can not alter it</p>
+                        <p>We don't need to worry about other parts of our application modifying the objects we are using</p>
+                    </aside>
+                </section>
+
+                <section>
+<pre><code class="hljs no-highlight" data-trim contenteditable data-noescape>
+<span class="variable">message</span> <span class="syntax">=</span> <span class="string">"hello everybody!"</span>
+
+<span class="variable">message</span> <span class="syntax">=</span> <span class="string">"hello again!"</span>
+</code></pre>
+
+<pre class="fragment"><code class="hljs no-highlight compiler" data-trim contenteditable data-noescape>
+<span style="color: rgb(0, 168, 198);">-- DUPLICATE DEFINITION -----------------------------------</span>
+
+<span style="color: rgb(213, 32, 12);"></span>Naming multiple top-level values `message` makes things
+ambiguous. When you say `message` which one do you want?
+<span style="color: rgb(213, 32, 12);"></span>
+<span style="color: rgb(154, 154, 154);">8|</span> <span style="color: rgb(154, 154, 154);">message = "hello again!"</span>
+<span style="color: rgb(213, 32, 12);">   ^^^^^^^</span>
+Find all the top-level values named `message` and do some
+renaming. Make sure the names are distinct!
+</code></pre>
+                </section>
+
+                <section data-background="img/wood.jpg">
+                    <h2>Static typing</h2>
+
+                    <blockquote class="fragment">The type of every expression is determined at compile type, before the application runs</blockquote>
+
+                    <aside class="notes">
+                        <p>Types as Int, Float, String, List, Int -> Int</p>
+                        <p>Differs from dynamic typing where types are determined at run time</p>
+                        <p>Large class of errors caught early</p>
+                        <p>Errors caught closer to the time/location where they are introduced</p>
+                        <!--p>We can refactor with confidence</p-->
+                    </aside>
+                </section>
+
+                <section>
+<pre><code class="hljs no-highlight" data-trim contenteditable data-noescape>
+<span class="function">addThree</span> <span class="variable">int</span> <span class="syntax">=</span> <span class="variable">int</span> <span class="syntax">+</span> <span class="variable">3</span>
+
+<span class="function">addThree</span> <span class="string">"4"</span>
+</code></pre>
+
+<pre class="fragment"><code class="hljs no-highlight compiler" data-trim contenteditable data-noescape>
+<span style="color: rgb(0, 168, 198);">-- TYPE MISMATCH ------------------------------------------</span>
+<span style="color: rgb(213, 32, 12);"></span>
+The argument to function `addThree` is causing a mismatch.
+<span style="color: rgb(213, 32, 12);"></span>
+<span style="color: rgb(154, 154, 154);">8|</span> <span style="color: rgb(154, 154, 154);">  addThree "4"</span>
+<span style="color: rgb(213, 32, 12);">              ^^^</span>
+Function `addThree` is expecting the argument to be:
+<span style="color: rgb(213, 32, 12);"></span>
+<span style="color: rgb(154, 154, 154);">    Int</span>
+<span style="color: rgb(213, 32, 12);"></span>
+But it is:
+<span style="color: rgb(213, 32, 12);"></span>
+<span style="color: rgb(154, 154, 154);">    String</span>
+</code></pre>
+
+                    <aside class="notes">
+                        <p>Error message even if code never executed</p>
+                        <p>Strictness on types removes the need for trivial testing</p>
+                    </aside>
+                </section>
+
+                <!--section>
+<pre><code class="hljs no-highlight" data-trim contenteditable data-noescape>
+<span class="syntax">if</span> <span class="variable">conditional</span>
+<span class="syntax">then</span> <span class="function">subtractFour</span> <span class="variable">n</span>
+<span class="syntax">else</span> <span class="function">addThree</span> <span class="string">"four"</span>
+</code></pre>
+
+<pre class="fragment"><code class="hljs no-highlight compiler" data-trim contenteditable data-noescape>
+<span style="color: rgb(0, 168, 198);">-- TYPE MISMATCH ------------------------------------------</span>
+<span style="color: rgb(213, 32, 12);"></span>
+The argument to function `addThree` is causing a mismatch.
+<span style="color: rgb(213, 32, 12);"></span>
+<span style="color: rgb(154, 154, 154);">8|</span> <span style="color: rgb(154, 154, 154);">  addThree "4"</span>
+<span style="color: rgb(213, 32, 12);">              ^^^</span>
+Function `addThree` is expecting the argument to be:
+<span style="color: rgb(213, 32, 12);"></span>
+<span style="color: rgb(154, 154, 154);">    Int</span>
+<span style="color: rgb(213, 32, 12);"></span>
+But it is:
+<span style="color: rgb(213, 32, 12);"></span>
+<span style="color: rgb(154, 154, 154);">    String</span>
+</code></pre>
+                </section-->
+
+                <section>
+                    <h2>Type inference</h2>
+<pre class="fragment"><code class="hljs no-highlight" data-trim contenteditable data-noescape>
+<span class="function">addThree</span> <span class="syntax">:</span> <span class="type">number</span> <span class="syntax">-></span> <span class="type">number</span>
+<span class="function">addThree</span> <span class="variable">int</span> <span class="syntax">=</span> <span class="variable">int</span> <span class="syntax">+</span> <span class="variable">3</span>
+</code></pre>
+
+<pre class="fragment"><code class="hljs no-highlight" data-trim contenteditable data-noescape>
+<span class="function">addThree</span> <span class="syntax">:</span> <span class="type">Int</span> <span class="syntax">-></span> <span class="type">Int</span>
+<span class="function">addThree</span> <span class="variable">int</span> <span class="syntax">=</span> <span class="variable">int</span> <span class="syntax">+</span> <span class="variable">3</span>
+</code></pre>
+
+                    <aside class="notes">
+                        <p>We can restrict the types</p>
+                        <!--p>Types keep track of information that otherwise the programmer would have to know himself</p-->
+                        <p>Documentation</p>
+                        <!--p>Sometimes it could be useful to write first the types, then think to the implementation, like interfaces in OO code</p-->
+                        <p>This way types can guide us during the development</p>
+                        <!--p>If we write general functions, sometimes there is only one possible implementation</p-->
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Semantic versioning</h2>
+
+                    <img src="img/semver02.png" height="500px" class="fragment">
+
+                    <aside class="notes">
+                        <p>Enforced by the compiler</p>
+                        <p>Impossible to release a breaking change without a new mayor version</p>
+                        <p>Reliable package manager</p>
+                    </aside>
+                </section>
+
+                <!--section data-background="img/wood.jpg">
+                    <h2>ELM</h2>
+
+                    <p class="fragment">Nice developers experience</p>
+                    <p class="fragment">Safe and reliable environment</p>
+                    <p class="fragment">Reuse of existing Javascript</p>
+
+                    <aside class="notes">
+                        <p>Protected, but not closed with interaction with expernal things</p>
+                        <p>There is a mechanism of pub/sub communication that allows to pass messages between Elm and javascript in a controlled fashion, so that the guarantees are always preserved</p>
+                    </aside>
+                </section-->
+
+                <section data-background="img/wood.jpg">
+                    <h2>A sample application</h2>
+                </section>
+
+                <section>
+                    <h2>Hanoi Towers</h2>
+
+                    <div id="hanoi"></div>
+
+                    <script>
+                        Elm.Main.embed(document.getElementById('hanoi'));
+                    </script>
+                </section>
+
+                <!--section>
+                    <h2>Let's have some TEA</h2>
+
+                    <img src="img/tea.jpg" height="500px">
+
+                    <aside class="notes">
+                        <p>Almost 5pm, it's TEA time</p>
+                    </aside>
+                </section-->
+
+                <section data-background="img/wood.jpg">
+                    <h2>The Elm Architecture</h2>
+
+                    <aside class="notes">
+                        <p>Emerges naturally in ELM</p>
+                        <p>Clear separation of concerns: data, interaction with them, rendering</p>
+                        <!--p>Great for modularity, code reuse and testing</p-->
+                        <!--p>It makes it easy to create complex web apps that stay healthy as you refactor and add features</p-->
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Model</h2>
+
+                    <img src="img/elm-architecture-model.png" height="500px" class="fragment">
+
+                    <aside class="notes">
+                        <p>Single source of truth of the application</p>
+                        <p>Getting right the model is the most important part of the application, sometimes also the hardest</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>How could we model it?</h2>
+<pre class="fragment"><code class="hljs no-highlight" data-trim contenteditable data-noescape>
+<span class="syntax">type alias</span> <span class="type">Disk</span> <span class="syntax">=</span> <span class="type">Int</span>
+
+<span class="syntax">type alias</span> <span class="type">Model</span> <span class="syntax">=</span> <span class="syntax">(</span> <span class="type">List Disk</span><span class="syntax">,</span> <span class="type">List Disk</span><span class="syntax">,</span> <span class="type">List Disk<span class=""> <span class="syntax">)</span>
+</code></pre>
+
+                    <div class="fragment">
+                        <p>What if...</p>
+<pre class="fragment"><code class="hljs no-highlight" data-trim contenteditable data-noescape>
+<span class="variable">model</span> <span class="syntax">= ([</span><span class="variable">1</span><span class="syntax">,</span> <span class="variable">3</span><span class="syntax">,</span> <span class="variable">5</span><span class="syntax">], [</span><span class="variable">1</span><span class="syntax">,</span> <span class="variable">2</span><span class="syntax">], [])</span>
+</code></pre>
+                    </div>
+
+                    <aside class="notes">
+                        <p>Everything would be easier if our model was always valid</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>A better way</h2>
+
+<pre class="fragment"><code class="hljs no-highlight" data-trim contenteditable data-noescape>
+<span class="syntax">type</span> <span class="type">Position</span>
+    <span class="syntax">=</span> <span class="type">FirstPeg</span>
+    <span class="syntax">|</span> <span class="type">SecondPeg</span>
+    <span class="syntax">|</span> <span class="type">ThirdPeg</span>
+
+<span class="syntax">type alias</span> <span class="type">Model</span> <span class="syntax">=</span> <span class="type">List Position</span>
+</code></pre>
+
+                    <aside class="notes">
+                        <p>Position is a union type</p>
+                        <p>model always valid</p>
+                        <p>makes easy property based testing</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>We keep track of...</h2>
+
+<pre class="fragment"><code class="hljs no-highlight" data-trim contenteditable data-noescape>
+<span class="syntax">type alias</span> <span class="type">Model</span> <span class="syntax">=</span>
+    <span class="syntax">{</span> <span class="variable">status</span> <span class="syntax">:</span> <span class="type">Hanoi.Model</span>
+    <span class="syntax">,</span> <span class="variable">from</span> <span class="syntax">:</span> <span class="type">Maybe Peg</span>
+    <span class="syntax">,</span> <span class="variable">to</span> <span class="syntax">:</span> <span class="type">Maybe Peg</span>
+    <span class="syntax">,</span> <span class="variable">message</span> <span class="syntax">:</span> <span class="type">Maybe String</span>
+    <span class="syntax">}</span>
+</code></pre>
+                </section>
+
+                <section>
+                    <h2>View</h2>
+
+                    <img src="img/elm-architecture-view.png" height="500px" class="fragment">
+
+                    <aside class="notes">
+                        <p>A way to represent as Html the current state of the Model</p>
+                        <p>Virtual Dom</p>
+                    </aside>
+                </section>
+
+                <section>
+<pre><code class="hljs no-highlight" data-trim contenteditable data-noescape>
+<span class="function">view</span> <span class="syntax">:</span> <span class="type">Model</span> <span class="type">-></span> <span class="type">Html Msg</span>
+<span class="function">view</span> <span class="variable">model</span> <span class="syntax">=</span>
+    <span class="function">div</span> <span class="syntax">[</span> <span class="function">class</span> <span class="string">"container"</span> <span class="syntax">]</span>
+        <span class="syntax">[</span> <span class="function">div</span> <span class="syntax">[</span> <span class="function">class</span> <span class="string">"pegs"</span> <span class="syntax">]</span>
+            <span class="syntax">[</span> <span class="function">div</span> <span class="syntax">[</span> <span class="function">class</span> <span class="string">"peg"</span> <span class="syntax">]</span>
+                <span class="syntax">[</span> <span class="function">ol</span> <span class="syntax">[</span> <span class="function">class</span> <span class="string">"pegList"</span> <span class="syntax">]</span>
+                    <span class="syntax">(</span> <span class="function">List.map</span> <span class="variable">viewDisk</span>
+                        <span class="variable">fst</span> <span class="syntax">(</span> <span class="function">disposition</span> <span class="variable">model.status</span> <span class="syntax">)</span>
+                    <span class="syntax">)</span>
+                <span class="">]</span>
+            , ...
+
+
+<span class="function">viewDisk</span> <span class="syntax">:</span> <span class="type">Int</span> <span class="syntax">-></span> <span class="type">Html Msg</span>
+<span class="function">viewDisk</span> <span class="function">i</span> <span class="syntax">=</span>
+    <span class="function">li</span> <span class="syntax">[</span> <span class="function">id</span> <span class="syntax">(</span> <span class="string">"disk"</span> <span class="syntax">++</span> <span class="function">toString</span> <span class="variable">i</span> <span class="syntax">),</span> <span class="function">class</span> <span class="string">"disk"</span> <span class="syntax">] []</span>
+</code></pre>
+
+                    <aside class="notes">
+                        <p>Html is completely defined using Elm functions</p>
+                        <p>completely declarative code</p>
+                        <p>No mutation of the DOM</p>
+                        <p>leave space for optimization</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Update</h2>
+
+                    <img src="img/elm-architecture-simple.png" height="500px" class="fragment">
+                </section>
+
+                <section>
+                    <h2>Messages</h2>
+<pre class="fragment"><code class="hljs no-highlight" data-trim contenteditable data-noescape>
+<span class="syntax">type</span> <span class="type">Msg</span>
+    <span class="syntax">=</span> <span class="type">From</span> <span class="syntax">(</span> <span class="type">Maybe Peg</span> <span class="syntax">)</span>
+    <span class="syntax">|</span> <span class="type">To</span> <span class="syntax">(</span> <span class="type">Maybe Peg</span> <span class="syntax">)</span>
+    <span class="">|</span> <span class="type">Error String</span>
+    <span class="">|</span> <span class="type">Move Peg Peg</span>
+</code></pre>
+                </section>
+
+                <section>
+                    <h2>View Updated</h2>
+
+<pre class="fragment"><code class="hljs no-highlight" data-trim contenteditable data-noescape>
+<span class="function">view</span> <span class="syntax">:</span> <span class="type">Model</span> <span class="syntax">-></span> <span class="type">Html Msg</span>
+<span class="function">view</span> <span class="variable">model</span> <span class="syntax">=</span>
+    ...
+        <span class="function">div</span> <span class="syntax">[</span> <span class="function">class</span> <span class="string">"hanoi-controls"</span> <span class="syntax">]</span>
+        <span class="syntax">[</span> <span class="function">button</span>
+            <span class="syntax">[</span> <span class="function">onClick</span> <span class="syntax">(</span> <span class="function">tryMove</span> <span class="variable">model</span> <span class="syntax">) ]</span>
+            <span class="syntax">[</span> <span class="function">text</span> <span class="string">"Move"</span> <span class="syntax">]</span>
+        <span class="syntax">]</span>
+
+<span class="function">tryMove</span> <span class="syntax">:</span> <span class="type">Model</span> <span class="syntax">-></span> <span class="type">Msg</span>
+<span class="function">tryMove</span> <span class="variable">model</span> <span class="syntax">=</span>
+    <span class="syntax">case (</span> <span class="variable">model.from</span><span class="syntax">,</span> <span class="variable">model.to</span> <span class="syntax">) of</span>
+        <span class="syntax">(</span> <span class="type">Nothing</span><span class="syntax">, _ ) -></span> <span class="type">Error</span> <span class="string">"Starting peg missing"</span>
+        <span class="syntax">( _,</span> <span class="type">Nothing</span> <span class="syntax">) -></span> <span class="type">Error</span> <span class="string">"Ending peg missing"</span>
+        <span class="syntax">(</span> <span class="type">Just</span> <span class="variable">from</span><span class="syntax">,</span> <span class="type">Just</span> <span class="variable">to</span> <span class="syntax">) -></span> <span class="type">Move</span> <span class="variable">from to</span>
+</code></pre>
+                </section>
+
+                <section>
+                    <h2>Update</h2>
+
+<pre class="fragment"><code class="hljs no-highlight" data-trim contenteditable data-noescape>
+<span class="function">update</span> <span class="syntax">:</span> <span class="type">Msg</span> <span class="syntax">-></span> <span class="type">Model</span> <span class="syntax">-></span> <span class="type">Model</span>
+<span class="function">update</span> <span class="variable">msg model</span> <span class="syntax">=</span>
+    <span class="syntax">case</span> <span class="variable">msg</span> <span class="syntax">of</span>
+        <span class="type">From</span> <span class="variable">maybePeg</span> <span class="syntax">-></span>
+            <span class="syntax">{</span> <span class="variable">model</span> <span class="syntax">|</span> <span class="variable">from</span> <span class="syntax">=</span> <span class="variable">maybePeg</span><span class="syntax">,</span> <span class="variable">message</span> <span class="syntax">=</span> <span class="type">Nothing</span> <span class="syntax">}</span>
+
+        <span class="type">To</span> <span class="variable">maybePeg</span> <span class="syntax">-></span>
+            <span class="syntax">{</span> <span class="variable">model</span> <span class="syntax">|</span> <span class="variable">to</span> <span class="syntax">=</span> <span class="variable">maybePeg</span><span class="syntax">,</span> <span class="variable">message</span> <span class="syntax">=</span> <span class="type">Nothing</span> <span class="syntax">}</span>
+
+        <span class="type">Error</span> <span class="variable">message</span> <span class="syntax">-></span>
+            <span class="syntax">{</span> <span class="variable">model</span> <span class="syntax">|</span> <span class="variable">message</span> <span class="syntax">=</span> <span class="type">Just</span> <span class="variable">message</span> <span class="syntax">}</span>
+
+        <span class="type">Move</span> <span class="variable">from to</span> <span class="syntax">-></span>
+            <span class="function">performMove</span> <span class="variable">model.status from to</span>
+</code></pre>
+                </section>
+
+                <section>
+                    <h2>TEA recap</h2>
+
+                    <img src="img/elm-architecture-simple.png" height="500px">
+
+                    <aside class="notes">
+                        <p>not possible to talk to the outside world</p>
+                    </aside>
+                </section>
+
+                <section data-background="img/wood.jpg">
+                    <h2>Effects</h2>
+
+                    <aside class="notes">
+                        <p>Random numbers, HTTP requests, listen to websocket messages</p>
+                        <p>not side effects, but managed effects</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Websockets</h2>
+
+                    <div id="hanoi-ws-1" style="width: 50%; float: left;"></div>
+                    <div id="hanoi-ws-2" style="width: 50%; float: right;"></div>
+
+                    <script>
+                        Elm.WebsocketMain.embed(document.getElementById('hanoi-ws-1'));
+                        Elm.WebsocketMain.embed(document.getElementById('hanoi-ws-2'));
+                    </script>
+                </section>
+
+                <section>
+                    <h2>commands</h2>
+
+                    <img src="img/elm-architecture-commands.png" height="500px" class="fragment">
+                </section>
+
+                <!--section>
+                    <h2>Init</h2>
+
+<pre class="fragment"><code class="hljs no-highlight" data-trim contenteditable data-noescape>
+<span class="function">init</span> <span class="syntax">: (</span> <span class="type">Model</span><span class="syntax">,</span> <span class="type">Cmd Msg</span> <span class="syntax">)</span>
+<span class="function">init</span> <span class="syntax">=</span>
+    <span class="syntax">let</span>
+        <span class="variable">status</span> <span class="syntax">=</span>
+            <span class="function">Hanoi.init</span>
+    <span class="syntax">in</span>
+        <span class="syntax">(</span> <span class="type">Model</span> <span class="variable">status</span> <span class="type">Nothing Nothing Nothing</span>, <span class="function">Cmd.none</span> <span class="syntax">)</span>
+</code></pre>
+                </section-->
+
+                <section>
+                    <h2>Messages</h2>
+
+<pre class="fragment"><code class="hljs no-highlight" data-trim contenteditable data-noescape>
+<span class="syntax">type</span> <span class="type">Msg</span>
+    <span class="syntax">=</span> <span class="type">From</span> <span class="syntax">(</span> <span class="type">Maybe Peg</span> <span class="syntax">)</span>
+    <span class="syntax">|</span> <span class="type">To</span> <span class="syntax">(</span> <span class="type">Maybe Peg</span> <span class="syntax">)</span>
+    <span class="syntax">|</span> <span class="type">Error String</span>
+    <span class="syntax">|</span> <span class="type">RequestMove Peg Peg</span>
+    <span class="syntax">|</span> <span class="type">Move Peg Peg</span>
+</code></pre>
+                </section>
+
+                <section>
+                    <h2>Update</h2>
+
+<pre class="fragment"><code class="hljs no-highlight" data-trim contenteditable data-noescape>
+<span class="function">update</span> <span class="syntax">:</span> <span class="type">Msg</span> <span class="syntax">-></span> <span class="type">Model</span> <span class="syntax">-> (</span> <span class="type">Model</span><span class="syntax">,</span> <span class="type">Cmd Msg</span> <span class="syntax">)</span>
+<span class="function">update</span> <span class="variable">msg model</span> <span class="syntax">=</span>
+    <span class="syntax">case</span> <span class="variable">msg</span> <span class="syntax">of</span>
+        ...
+        <span class="type">RequestMove</span> <span class="variable">from to</span> <span class="syntax">-></span>
+            <span class="syntax">let</span>
+                <span class="variable">encodedJson</span> <span class="syntax">=</span>
+                    <span class="function">encode</span> <span class="variable">4</span>
+                        <span class="syntax">(</span> <span class="function">object</span>
+                            <span class="syntax">[(</span> <span class="string">"from"</span><span class="syntax">,</span> <span class="function">int</span> <span class="syntax">(</span> <span class="function">toInt</span> <span class="variable">from</span> <span class="syntax">))</span>
+                            <span class="syntax">,(</span> <span class="string">"to"</span><span class="syntax">,</span> <span class="function">int</span> <span class="syntax">(</span> <span class="function">toInt</span> <span class="variable">to</span> <span class="syntax">))</span>
+                            <span class="syntax">]</span>
+                        <span class="syntax">)</span>
+            <span class="syntax">in</span>
+                <span class="syntax">(</span> <span class="variable">model</span><span class="syntax">,</span> <span class="function">WS.send</span> <span class="string">"ws://host"</span> <span class="variable">encodedJson</span> <span class="syntax">)</span>
+</code></pre>
+                </section>
+
+                <section>
+                    <h2>subscriptions</h2>
+
+                    <img src="img/elm-architecture-complete.png" height="500px" class="fragment">
+                </section>
+
+                <section>
+                    <h2>Subscriptions</h2>
+
+<pre class="fragment"><code class="hljs no-highlight" data-trim contenteditable data-noescape>
+<span class="function">subscriptions</span> <span class="syntax">:</span> <span class="type">Model</span> <span class="syntax">-></span> <span class="type">Sub Msg</span>
+</code></pre>
+
+                    <aside class="notes">
+                        <p>According to the model state, we can listen or not to some channels, and receive messages</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Subscriptions</h2>
+
+<pre class="fragment"><code class="hljs no-highlight" data-trim contenteditable data-noescape>
+<span class="function">subscriptions</span> <span class="syntax">:</span> <span class="type">Model</span> <span class="syntax">-></span> <span class="type">Sub Msg</span>
+<span class="function">subscriptions</span> <span class="variable">model</span> <span class="syntax">=</span>
+    <span class="function">WS.listen</span> <span class="string">"ws://host"</span> <span class="variable">decodeMessage</span>
+
+<span class="function">decodeMessage</span> <span class="syntax">:</span> <span class="type">String</span> <span class="syntax">-></span> <span class="type">Msg</span>
+</code></pre>
+                </section>
+
+                <section>
+                    <img src="img/elm-architecture-complete.png" height="500px">
+                </section>
+
+                <section>
+                    <h2>Thank you!</h2>
+
+                    <img src="img/solong.jpg">
+                </section>
+
+                <section>
+                    <h2>Resources</h2>
+
+                    <p style="font-size: 0.9em;"><a href="http://elm-lang.org">elm-lang.org</a></p>
+                    <p style="font-size: 0.9em;"><a href="http://guide.elm-lang.org/">guide.elm-lang.org</a></p>
+                    <p style="font-size: 0.9em;"><a href="http://www.elm-tutorial.org/">www.elm-tutorial.org</a></p>
+                    <p style="font-size: 0.9em;"><a href="http://www.elmcast.io/">www.elmcast.io</a></p>
+                    <p style="font-size: 0.9em;"><a href="http://www.elmweekly.nl/">www.elmweekly.nl</a></p>
+                    <p style="font-size: 0.9em;"><a href="https://groups.google.com/forum/#!forum/elm-discuss">groups.google.com/forum/#!forum/elm-discuss</a></p>
+                    <p style="font-size: 0.9em;"><a href="https://elmlang.slack.com">elmlang.slack.com</a></p>
+                </section>
+
+                <section>
+                    <h2>SPEAKERS <img src="img/elm_heart.png" height="100px"> FEEDBACK!</h2>
+                    <div style="width: 50%; float: left;">
+                        <img src="img/qr-code.png">
+                    </div>
+                    <div style="width: 50%; float: right;">
+                        <p style="padding: 125px 0;">Rate the talks!!! <a href="https://legacy.joind.in/19115">legacy.joind.in/19115</a></p>
+                    </div>
+                    <div style="clear: both;">
+                        <p><a href="http://twitter.com/marcoshuttle" target="_blank">@marcoshuttle</a> / <a href="mailto:m.perone@mvlabs.it">m.perone@mvlabs.it</a></p>
+                    </div>
+                </section>
+            </div>
+
+            <footer>
+                <div class="details">
+                WebCamp - Zagreb, October 28<sup>th</sup> 2016 -
+                <a href="https://twitter.com/marcoshuttle">@marcoshuttle</a>
+                 <img src="img/logo.png" height="25">
+            </footer>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+
+            // Full list of configuration options available at:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: false,
+                progress: true,
+                history: true,
+                center: true,
+
+                transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+                // Optional reveal.js plugins
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true },
+                    { src: 'plugin/notes/notes.js', async: true }
+                ]
+            });
+
+        </script>
+
+    </body>
+</html>
