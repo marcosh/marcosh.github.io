@@ -9,8 +9,6 @@ pageUrl: '"http://marcosh.github.io/post/2016/09/29/es-cqrs-integration-tests.ht
 pageIdentifier: '"es-cqrs-integration-tests"'
 ---
 
-# ES/CQRS integration tests
-
 Recently here in [MVLabs](http://www.mvlabs.it) we started working on a new project using event sourcing and CQRS. It was quite some time that we wanted to do it
 but we never had the occasion. Now, with a new project in hand, it seemed the best choice to try our luck with this new
 approach.

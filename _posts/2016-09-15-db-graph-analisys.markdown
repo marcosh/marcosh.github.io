@@ -9,8 +9,6 @@ pageUrl: '"http://marcosh.github.io/post/2016/09/15/db-graph-analysis.html"'
 pageIdentifier: '"db-graph-analysis"'
 ---
 
-# Database relations and graph visualization
-
 It often happens that a project grows and grows until a point where it would be desirable to split it in multiple subprojects. This would lead to small, independent, more maintainable components and it would be easier to work in parallel on the subprojects.
 
 Still, it is not always easy to understand how to split a big project (a big ball of mud?) into meaningful independent subprojects.
