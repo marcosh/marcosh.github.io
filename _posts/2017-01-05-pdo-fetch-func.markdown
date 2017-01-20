@@ -1,12 +1,15 @@
 ---
 layout: post
 title:  "Constructing objects with PDO"
+author: Marco Perone
 date:   2017-01-05 15:03:13 +0200
 categories: post
 tags: php pdo
 comments: true
 pageUrl: '"http://marcosh.github.io/post/2017/01/05/pdo-fetch-func.html"'
 pageIdentifier: '"pdo-fetch-func"'
+description: "How to use PDO::FETCH_FUNC to create custom objects directly from PDO queries"
+image: "/img/object-table.jpeg"
 ---
 
 One of the most common non-trivial issue that needs to be solved in a project is deciding how to build domain objects starting from database data.

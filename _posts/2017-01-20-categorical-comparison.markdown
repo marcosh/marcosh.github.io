@@ -1,12 +1,15 @@
 ---
 layout: post
 title:  "A categorical comparison between FP and OOP"
+author: Marco Perone
 date:   2017-01-20 09:31:13 +0200
 categories: post
 tags: functional-programming category-theory object-oriented-programming
 comments: true
 pageUrl: '"http://marcosh.github.io/post/2017/01/20/categorical-comparison.html"'
 pageIdentifier: '"categorical-comparison"'
+description: "An analisys of the differences between functional programming and object oriented programming using category theory"
+image: "/img/composition.png"
 ---
 
 [Category theory](https://en.wikipedia.org/wiki/Category_theory) is the branch of mathematics abstracting on the concept of [composition](https://en.wikipedia.org/wiki/Function_composition). As [Bartosz Milewski](https://twitter.com/BartoszMilewski) explains in [this post](https://bartoszmilewski.com/2014/11/04/category-the-essence-of-composition/), composition (and decomposition) is essential in computer programming, since it allows us to solve small issues one by one and then compose the pieces to tackle complex problems.

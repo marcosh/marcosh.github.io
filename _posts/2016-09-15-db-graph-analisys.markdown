@@ -1,12 +1,15 @@
 ---
 layout: post
 title:  "Database relations and graph visualization"
+author: Marco Perone
 date:   2016-09-15 10:06:34 +0200
 categories: post
 tags: database graph
 comments: true
 pageUrl: '"http://marcosh.github.io/post/2016/09/15/db-graph-analysis.html"'
 pageIdentifier: '"db-graph-analysis"'
+description: "Obtaining informations about a domain inspecting the relations between the database tables"
+image: "/img/first.png"
 ---
 
 It often happens that a project grows and grows until a point where it would be desirable to split it in multiple subprojects. This would lead to small, independent, more maintainable components and it would be easier to work in parallel on the subprojects.

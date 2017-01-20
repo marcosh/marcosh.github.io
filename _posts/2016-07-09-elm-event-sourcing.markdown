@@ -1,12 +1,15 @@
 ---
 layout: post
 title:  "Elm and Event Sourcing"
+author: Marco Perone
 date:   2016-07-09 16:09:34 +0200
 categories: post
 tags: elm eventsourcing ddd functional
 comments: true
 pageUrl: '"http://marcosh.github.io/post/2016/07/08/elm-event-sourcing.html"'
 pageIdentifier: '"elm-event-sourcing"'
+description: "How to create an ELM application that allows the user to go back in time"
+image: "/img/delorian.jpg"
 ---
 
 ## Elm

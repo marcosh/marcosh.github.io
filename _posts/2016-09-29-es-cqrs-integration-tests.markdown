@@ -1,12 +1,15 @@
 ---
 layout: post
 title:  "ES/CQRS integration tests"
+author: Marco Perone
 date:   2016-09-29 10:11:42 +0200
 categories: post
 tags: event-sourcing cqrs integration-tests
 comments: true
 pageUrl: '"http://marcosh.github.io/post/2016/09/29/es-cqrs-integration-tests.html"'
 pageIdentifier: '"es-cqrs-integration-tests"'
+description: "How to set up integration tests with Prooph in an ES/CQRS setting"
+image: "/img/integration.jpg"
 ---
 
 Recently here in [MVLabs](http://www.mvlabs.it) we started working on a new project using event sourcing and CQRS. It was quite some time that we wanted to do it

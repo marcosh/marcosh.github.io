@@ -1,12 +1,15 @@
 ---
 layout: post
 title:  "On valid models and data structures"
+author: Marco Perone
 date:   2016-11-04 13:09:13 +0200
 categories: post
 tags: elm data-structure components hanoi
 comments: true
 pageUrl: '"http://marcosh.github.io/post/2016/11/04/on-valid-models-and-data-structures.html"'
 pageIdentifier: '"elm-data-structures"'
+description: "Valid domain models and data structures in ELM"
+image: "/img/tower-hanoi.jpg"
 ---
 
 Some days ago I had the luck to speak at [WebCamp](https://2016.webcampzg.org) in Zagreb. It was a really nice conference and I would suggest every web developer to consider going there next year.
