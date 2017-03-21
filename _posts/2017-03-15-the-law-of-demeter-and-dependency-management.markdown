@@ -155,7 +155,7 @@ to violate the Law of Demeter for dependencies and notifying every violation wit
 a compile time error. Less optimal than the solution in Elm, in Php you could use
 the library [PhpDependencyChecker](https://github.com/maglnet/ComposerRequireChecker)
 by [@Ocramius](https://twitter.com/Ocramius) and [@MaGlNet](https://twitter.com/MaGlNet)
-to statically chack if all the symbols used in a library come from friendly dependencies.
+to statically check if all the symbols used in a library come from friendly dependencies.
 
 ## Conclusion
 
