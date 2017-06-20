@@ -6,7 +6,7 @@ date:   2017-06-16 17:53:42 +0200
 categories: post
 tags: functional-programming php maybe types
 comments: true
-pageUrl: '"http://marcosh.github.io/post/2017/05/16/maybe-in-php.html"'
+pageUrl: '"http://marcosh.github.io/post/2017/06/16/maybe-in-php.html"'
 pageIdentifier: '"maybe-in-php"'
 description: "How to implement a Maybe type in PHP despite object orientation"
 image: "/img/maybe.jpg"
