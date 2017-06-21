@@ -137,6 +137,11 @@ is either `Some` or `None`, since a new class could be defined to extend `Option
 extends `Option`, it must define a method `get` which should not be there; to denote that the method
 should not be used, an exception is thrown introducing side effects in a generically pure codebase.
 
+UPDATE 21/06/2017: Phunkie was updated to solve the issues I mention here; now it does not define `get` on
+`Option` and therefore it doesn't need to define it throwing an exception on `None`. Moreover, using a
+`final` constructor on `Option`, it ensures that an `Option` could be only `Just` or `None`. The only small
+pitfall of this is that it ensures it throwing an exception.
+
 These two libraries we just saw are not limited to define a `Maybe` type and address functional programming
 in PHP more broadly. Let's have a look now at two libraries which are focused on the definition of `Maybe`
 in PHP.
