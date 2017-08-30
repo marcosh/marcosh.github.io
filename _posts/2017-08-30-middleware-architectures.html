@@ -1,0 +1,1441 @@
+---
+layout: presentation
+title:  "Middleware architectures"
+date:   2017-08-30 07:52:00 +0200
+categories: [presentations]
+tags: php middleware
+---
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Middleware architectures in PHP with Zend Expressive </title>
+
+    <meta name="description" content="Middleware architectures in PHP with Zend Expressive ">
+    <meta name="author" content="Steve Maraspin">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/mv.css" id="theme">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/github.css">
+
+    <link href="img/logos/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" >
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+
+        <section class="title" data-background="#7ab317">
+            <h1>Middleware architectures</h1>
+            <h2>in PHP with Zend Expressive </h2>
+        </section>
+
+        <!-- https://pixabay.com/en/balance-zen-objects-yoga-centered-2211334/  -->
+        <section class="bkg" data-background="img/balance-2211334_1280.jpg">
+            <h1 class="borded">Middleware</h1>
+        </section>
+
+        <section class="simple">
+            <h1>SOA Middleware</h1>
+            <img src="img/middleware-soa.jpg">
+        </section>
+
+        <section class="simple">
+            <h1 class="strikethrough">Not today's topic</h1>
+            <img src="img/no-middleware-soa.jpg">
+            <aside class="notes">
+                <p>not the SOA Middleware</p>
+            </aside>
+        </section>
+
+        <!--  data-trim contenteditable -->
+        <section class="simple">
+            <h1>Node.JS Middleware</h1>
+            <pre><code class="hljs javascript" data-trim>
+var express = require('express')
+var app = express()
+
+app.get('/', function (req, res) {
+    res.send('Hello World!')
+})
+
+app.listen(3000)
+                    </code></pre>
+        </section>
+
+        <section class="simple">
+            <img src="img/req-mw-resp.png">
+        </section>
+
+        <section class="bkg" data-background="img/marco.jpg">
+            <h1 class="borded">Marco</h1>
+        </section>
+
+        <section class="bkg" data-background="img/explorer2.jpg">
+            <h1 class="top-right">Explorer</h1>
+            <aside class="notes">
+                <p>Mathematician, mountain environments</p>
+            </aside>
+        </section>
+
+        <section class="bkg" data-background="img/board.jpg">
+            <h1 class="low-right">Avid learner</h1>
+            <aside class="notes">
+                <p>Functional programming, Codemotion talk on ELM</p>
+            </aside>
+        </section>
+
+        <!-- https://pixabay.com/en/dark-chocolate-bar-food-2562840/ -->
+        <section class="bkg" data-background="img/dark-2562840_1280.jpg">
+            <h1 class="top-right">Chocolate Lover</h1>
+            <aside class="notes">
+                <p>Vice</p>
+                <p>Besides being a Mathematician</p>
+                <p>Human being</p>
+            </aside>
+        </section>
+
+        <section class="bkg" data-background="img/steve2.jpg">
+            <h1>Steve</h1>
+        </section>
+
+        <!-- https://pixabay.com/en/camping-travel-sunrise-adventure-2581242/ -->
+        <section class="bkg" data-background="img/camping-2581242_1280.jpg">
+            <h1>Enjoys Travelling</h1>
+            <aside class="notes">
+                <p>Experiencing new stuff</p>
+                <p>Exploring new environments</p>
+            </aside>
+        </section>
+
+        <!-- https://pixabay.com/en/architecture-skyscraper-1727807/ -->
+        <section class="bkg" data-background="img/architecture-1727807_1280.jpg">
+            <h2>Software Architectures</h2>
+            <aside class="notes">
+                <p>Software Architectures</p>
+                <p>Hawaiian Shirts</p>
+                <p>Also Sports; Baseball Especially</p>
+            </aside>
+        </section>
+
+        <section class="bkg" data-background="img/hawaii_orioles.jpg">
+            <h1>In a few years...</h1>
+        </section>
+
+        <section>
+            <div class="space10">
+                <h4>Software Engineers at</h4>
+                <img src="img/logos/mva-logo.png">
+                <aside class="notes">
+                    <p>Italy-based, North-East, not too far away from here...</p>
+                    <p>Car Sharing, Hotel Entertainment, Finance, Startups...</p>
+                </aside>
+        </section>
+
+        <!-- https://pixabay.com/en/work-workaholic-writer-programmer-1627703/... -->
+        <!-- https://pixabay.com/en/computer-code-coding-programming-1828603/ -->
+        <section class="bkg" data-background="img/computer-1828603_1280.jpg">
+            <h1 class="low-right">How about you?</h1>
+        </section>
+
+        <section class="simple">
+            <h1>Who uses?</h1>
+            <img src="img/symfony.png" width="40%">
+            <br>
+            <br>
+            <img src="img/zf.jpg" width="25%">
+        </section>
+
+        <section class="bkg" data-background="#fff">
+            <p>Dependency Injection</p>
+            <p>Value Objects</p>
+        </section>
+
+        <section class="bkg" data-background="#fff">
+            <p class="disabled">Dependency Injection</p>
+            <p class="disabled">Value Objects</p>
+            <p>PSR-7</p>
+        </section>
+
+        <section class="bkg" data-background="#fff">
+            <p class="disabled">Dependency Injection</p>
+            <p class="disabled">Value Objects</p>
+            <p class="disabled">PSR-7</p>
+            <p>Middleware</p>
+            <p>Zend Expressive</p>
+        </section>
+
+
+        <!-- https://pixabay.com/en/lake-west-sunset-the-sun-sky-2522540/ -->
+        <section class="bkg" data-background="img/lake-2522540_1280.jpg">
+            <h1>Plans for the day...</h1>
+        </section>
+
+        <!-- https://pixabay.com/en/school-old-plate-learning-1223872/ -->
+        <section class="bkg" data-background="img/board-ze.jpg">
+        </section>
+
+        <section class="simple" data-background="#efefef">
+            <h1>A Nice Side effect...</h1>
+            <img src="img/zend-expressive-logo.png" width="44%">
+        </section>
+
+        <section class="simple">
+            <h1>Zend Expressive</h1>
+            <ul>
+                <li>easy to use micro-framework</li>
+                <li>PSR-15, PSR-11, PSR-7 compliant</li>
+                <li>supports middleware</li>
+                <li>component based</li>
+            </ul>
+        </section>
+
+        <section class="simple code">
+            <h2>Let's Go!</h2>
+            <pre><code class="hljs bash" data-trim>
+cd /var/www/html/summercamp/phpmiddleware
+
+git checkout 01-expressive-skeleton
+                    </code></pre>
+            <br>
+            <p>Tips & Hints:</p>
+            <pre><code class="hljs bash" data-trim>
+docs/readme.html
+                    </code></pre>
+
+        </section>
+
+        <section class="simple">
+            <h1>http://phpmiddleware.websc</h1>
+            <p>using Postman
+            <pre><code class="hljs bash" data-trim>
+postman --disable-gpu
+                    </code></pre>
+        </section>
+
+        <section class="bkg">
+            <img src="img/home.png">
+        </section>
+
+        <section class="simple">
+            <h1>Default Installation</h1>
+            <pre><code class="hljs bash" data-trim>
+cd /var/www/html/summercamp/
+
+composer create-project zendframework/zend-expressive-skeleton phpmiddleware
+                    </code></pre>
+        </section>
+
+        <section class="bkg">
+            <img src="img/zend-expressive.png">
+        </section>
+
+        <section class="bkg" data-background="#12222f">
+            <img src="img/installation.png">
+        </section>
+
+        <section class="bkg" data-background="#300a24">
+            <img src="img/expressive-install-step-1.png">
+        </section>
+
+        <section class="bkg" data-background="#300a24">
+            <img src="img/expressive-install-step-2.png">
+        </section>
+
+        <!-- https://pixabay.com/en/swamp-tundra-grass-autumn-bumps-2603374/ -->
+        <section class="bkg" data-background="img/swamp-2603374_1280.jpg">
+            <h1 class="top-right">PIMPLE</h1>
+        </section>
+
+        <section class="bkg" data-background="#300a24">
+            <img src="img/expressive-install-step-3.png">
+        </section>
+
+        <!-- https://pixabay.com/en/network-connection-pc-web-address-197300/ -->
+        <section class="bkg" data-background="img/network-197300_1280.jpg">
+            <h1>FastRoute</h1>
+        </section>
+
+        <section class="bkg" data-background="#300a24">
+            <img src="img/expressive-install-step-4.png">
+        </section>
+
+        <section class="bkg" data-background="#300a24">
+            <img src="img/expressive-install-step-5.png">
+        </section>
+
+        <!-- https://pixabay.com/en/kitchen-culinary-cooks-helpers-81644/ -->
+        <section class="bkg" data-background="img/kitchen-81644_1280.jpg">
+            <h1>Interoperability</h1>
+        </section>
+
+        <!-- https://pixabay.com/en/kitchen-culinary-cooks-helpers-81644/ -->
+        <section class="bkg" data-background="img/kitchen-81644_1280.jpg">
+            <h1>Keyword for today</h1>
+        </section>
+
+        <section class="bkg">
+            <img src="img/ze-stack-if.png">
+        </section>
+
+        <section class="bkg">
+            <img src="img/ze-stack-im.png">
+        </section>
+
+        <!-- https://pixabay.com/en/food-preparation-parts-wood-table-1081813/ -->
+        <section class="bkg" data-background="img/food-preparation-1081813_1280.jpg">
+            <h1>Component Glue</h1>
+            <aside class="notes">
+                <p>Wrapper around existing stuff</p>
+                <p>supports multiple routers</p>
+                <p>PSR-7 Compliant</p>
+                <p>PSR-11 Compliant</p>
+                <p>supports multiple service locators</p>
+            </aside>
+        </section>
+
+        <section class="simple">
+            <h1>Filesystem layout</h1>
+            <p>Let's open PHPStorm at:</p>
+            <pre><code class="hljs bash" data-trim>
+/var/www/html/summercamp/phpmiddleware
+                    </code></pre>
+            <pre><code class="hljs" data-trim>
+├── bin
+├── config
+├── data
+├── docs
+├── public
+│     └── index.php
+├── src
+├── test
+└── vendor
+                    </code></pre>
+        </section>
+
+        <section class="simple">
+            <p>Apache's configuration</p>
+            <pre><code class="hljs bash" data-trim>
+/etc/apache2/sites-available/phpmiddleware.conf
+                    </code></pre>
+            <br>
+            <p>Document root</p>
+            <pre><code class="hljs bash" data-trim>
+/var/www/html/summercamp/phpmiddleware/public
+                    </code></pre>
+        </section>
+
+
+        <section class="simple">
+            <h2>public/index.php</h2>
+            <pre><code class="hljs no-highlight php" data-trim data-noescape>
+chdir(dirname(<span class="hljs-keyword">__DIR__</span>));
+<span class="hljs-keyword">require</span> <span class="hljs-string">'vendor/autoload.php'</span>;
+
+call_user_func(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+    <span class="hljs-comment">/**<span class="hljs-phpdoc"> @var</span> \Interop\Container\ContainerInterface $container */</span>
+    <span class="hljs-variable">$container</span> = <span class="hljs-keyword">require</span> <span class="hljs-string">'config/container.php'</span>;
+
+    <span class="hljs-comment">/**<span class="hljs-phpdoc"> @var</span> \Zend\Expressive\Application $app */</span>
+    <span class="hljs-variable">$app</span> = <span class="hljs-variable">$container</span><span class="hljs-funtion">-&gt;get</span>(\Zend\Expressive\Application::<span class="hljs-keyword">class</span>);
+
+    <span class="hljs-keyword">require</span> <span class="hljs-string">'config/pipeline.php'</span>;
+    <span class="hljs-keyword">require</span> <span class="hljs-string">'config/routes.php'</span>;
+
+    <span class="hljs-variable">$app</span><span class="hljs-funtion">-&gt;run</span>();
+});</code></pre>
+        </section>
+
+        <section class="simple">
+            <h2>config/config.php</h2>
+            <pre><code class="hljs no-highlight" data-trim data-noescape>
+<span class="hljs-variable">$aggregator</span> = <span class="hljs-keyword">new</span> ConfigAggregator([
+    App\ConfigProvider::<span class="hljs-keyword">class</span>,
+    <span class="hljs-keyword">new</span> PhpFileProvider(<span class="hljs-string">'config/autoload/&#123;&#123;,*.}global,&#123;,*.}local}.php'</span>),
+    <span class="hljs-keyword">new</span> PhpFileProvider(<span class="hljs-string">'config/development.config.php'</span>)
+]);
+
+return <span class="hljs-variable">$aggregator</span><span class="hljs-funtion">-&gt;getMergedConfig</span>();</code></pre>
+        </section>
+
+        <section class="simple">
+            <h2>config/pipeline.php</h2>
+            <pre><code class="hljs no-highlight" data-trim data-noescape>
+<span class="hljs-variable">$app</span><span class="hljs-funtion">->pipe</span>(ErrorHandler::<span class="hljs-keyword">class</span>);
+
+<span class="hljs-variable">$app</span><span class="hljs-funtion">->pipeRoutingMiddleware</span>();
+
+<span class="hljs-variable">$app</span><span class="hljs-funtion">->pipeDispatchMiddleware</span>();
+
+<span class="hljs-variable">$app</span><span class="hljs-funtion">->pipe</span>(NotFoundHandler::<span class="hljs-keyword">class</span>);
+                    </code></pre>
+        </section>
+
+        <section class="simple">
+            <h2>config/routes.php</h2>
+            <pre><code class="hljs no-highlight" data-trim data-noescape>
+<span class="hljs-variable">$app</span><span class="hljs-funtion">-&gt;get</span>(<span class="hljs-string">'/'</span>, App\Action\HomePageAction::<span class="hljs-keyword">class</span>, <span class="hljs-string">'home'</span>);
+<span class="hljs-variable">$app</span><span class="hljs-funtion">-&gt;get</span>(<span class="hljs-string">'/api/ping'</span>, App\Action\PingAction::<span class="hljs-keyword">class</span>, <span class="hljs-string">'api.ping'</span>);
+                    </code></pre>
+        </section>
+
+        <section class="bkg">
+            <img src="img/home.png">
+        </section>
+
+        <section class="bkg">
+            <img src="img/wrong-ping.png">
+        </section>
+
+
+        <section class="simple">
+            <h2>config/routes.php</h2>
+            <pre><code class="hljs no-highlight" data-trim data-noescape>
+<span class="hljs-variable">$app</span><span class="hljs-funtion">-&gt;get</span>(<span class="hljs-string">'/'</span>, App\Action\HomePageAction::<span class="hljs-keyword">class</span>, <span class="hljs-string">'home'</span>);
+<span class="hljs-variable">$app</span><span class="hljs-funtion">-&gt;get</span>(<span class="hljs-string">'/api/ping'</span>, App\Action\PingAction::<span class="hljs-keyword">class</span>, <span class="hljs-string">'api.ping'</span>);
+                    </code></pre>
+        </section>
+
+        <section class="bkg">
+            <img src="img/ping.png">
+        </section>
+
+        <section class="simple">
+            <h2>config/routes.php</h2>
+            <pre><code class="hljs no-highlight" data-trim data-noescape>
+<span class="hljs-variable">$app</span><span class="hljs-funtion">-&gt;get</span>(<span class="hljs-string">'/'</span>, App\Action\HomePageAction::<span class="hljs-keyword">class</span>, <span class="hljs-string">'home'</span>);
+<span class="hljs-variable">$app</span><span class="hljs-funtion">-&gt;get</span>(<span class="hljs-string">'/api/ping'</span>, App\Action\PingAction::<span class="hljs-keyword">class</span>, <span class="hljs-string">'api.ping'</span>);
+                    </code></pre>
+        </section>
+
+        <section class="simple">
+            <h2>src/App/Action/PingAction.php</h2>
+            <pre><code class="hljs php" data-trim>
+namespace App\Action;
+
+class PingAction implements ServerMiddlewareInterface
+{
+    public function process(
+        ServerRequestInterface $request,
+        DelegateInterface $delegate
+    ) {
+        return new JsonResponse(['ack' => time()]);
+    }
+}
+                    </code></pre>
+        </section>
+
+        <section class="simple">
+            <h1 style="margin-bottom: 0px;">PSR-7 interfaces</h1>
+            <img src="img/psr7.jpg">
+        </section>
+
+        <section class="simple">
+            <h1 style="margin-bottom: 0px;">PSR-7 interfaces</h1>
+            <img src="img/psr7-relevant.jpg">
+        </section>
+
+        <section class="simple">
+            <h1>PSR-7 MessageInterface</h1>
+            <pre><code class="hljs php" data-trim>
+namespace Psr\Http\Message;
+
+interface MessageInterface
+{
+    public function getProtocolVersion();
+    public function withProtocolVersion($version);
+    public function getHeaders();
+    public function hasHeader($name);
+    public function getHeader($name);
+    public function getHeaderLine($name);
+    public function withHeader($name, $value);
+    public function withAddedHeader($name, $value);
+    public function withoutHeader($name);
+    public function getBody();
+    public function withBody(StreamInterface $body);
+}
+                        </code></pre>
+        </section>
+
+        <section class="simple">
+            <h1>PSR-7 RequestInterface</h1>
+            <pre><code class="hljs php" data-trim>
+namespace Psr\Http\Message;
+
+interface RequestInterface extends MessageInterface
+{
+    public function getRequestTarget();
+    public function withRequestTarget($requestTarget);
+    public function getMethod();
+    public function withMethod($method);
+    public function getUri();
+    public function withUri(UriInterface $uri, $preserveHost = false);
+}
+                        </code></pre>
+        </section>
+
+        <section class="simple">
+            <h1>PSR-7 ServerRequestInterface</h1>
+            <pre><code class="hljs php" data-trim>
+namespace Psr\Http\Message;
+
+interface ServerRequestInterface extends RequestInterface
+{
+    public function getServerParams();
+    public function getCookieParams();
+    public function withCookieParams(array $cookies);
+    public function getQueryParams();
+    public function withQueryParams(array $query);
+    public function getUploadedFiles();
+    public function withUploadedFiles(array $uploadedFiles);
+    public function getParsedBody();
+    public function withParsedBody($data);
+    public function getAttributes();
+    public function getAttribute($name, $default = null);
+    public function withAttribute($name, $value);
+    public function withoutAttribute($name);
+}
+                        </code></pre>
+        </section>
+
+        <section class="simple">
+            <h1>PSR-7 ResponseInterface</h1>
+            <pre><code class="hljs php" data-trim>
+namespace Psr\Http\Message;
+
+interface ResponseInterface extends MessageInterface
+{
+    public function getStatusCode();
+    public function withStatus($code, $reasonPhrase = '');
+    public function getReasonPhrase();
+}
+                    </code></pre>
+        </section>
+
+        <section class="simple">
+            <h1>Interacting with PSR-7 messages</h1>
+            <pre><code class="hljs no-highlight" data-trim data-noescape>
+<span class="hljs-variable">$response</span><span class="hljs-function">->setStatusCode</span>(<span class="hljs-number">418</span>);
+                    </code></pre>
+            <pre><code class="hljs no-highlight" data-trim data-noescape>
+<span class="hljs-variable">$response</span> = <span class="hljs-variable">$response</span><span class="hljs-function">->withStatusCode</span>(<span class="hljs-number">418</span>);
+                    </code></pre>
+        </section>
+
+        <section class="bkg" data-background="img/diamond.jpg">
+            <h2>A Value object is forever</h2>
+            <aside class="notes">
+                <p>Objects whose identity is the aggregate of all the attributes of the object</p>
+                <p>Every time we alter a value object we do not mutate it, but we actually create a new one</p>
+                <p>Ensures the integrity of the state of the application</p>
+                <p>State determines identity</p>
+            </aside>
+        </section>
+
+        <section class="simple">
+            <h1>Time to do stuff...</h1>
+            <pre><code class="hljs bash" data-trim>
+git checkout 03-welcome
+                    </code></pre>
+        </section>
+
+        <section class="bkg">
+            <img src="img/welcome.png">
+        </section>
+
+        <section class="bkg">
+            <img src="img/hello.png">
+        </section>
+
+        <section class="bkg">
+            <img src="img/hello-rovinj.png">
+        </section>
+
+        <section class="simple code">
+            <h1>Exercise 1 (10 mins)</h1>
+            <p>get to branch 03-welcome</p>
+            <p>Create an hello route (/hello)</p>
+            <p>Display output {"hello":"NAME"}</p>
+            <p>NAME is either the value of the "name" query string parameter, or the string "random phper" if no name parameter was provided</p>
+            <br>
+            <pre><code class="hljs" data-trim>
+docs/readme.html
+                    </code></pre>
+        </section>
+
+        <section class="simple">
+            <h1>Exercise 1 Solution</h1>
+            <p>config/routes.php</p>
+            <pre><code class="hljs no-highlight" data-trim data-noescape>
+<span class="hljs-variable">$app</span><span class="hljs-funtion">-&gt;get</span>(<span class="hljs-string">'/'</span>, \App\Action\IndexAction::<span class="hljs-keyword">class</span>, <span class="hljs-string">'index'</span>);
+
+<span class="hljs-variable">$app</span><span class="hljs-funtion">-&gt;get</span>(<span class="hljs-string">'/hello'</span>, \App\Action\HelloAction::<span class="hljs-keyword">class</span>, <span class="hljs-string">'hello'</span>);
+                    </code></pre>
+        </section>
+
+        <section class="simple code">
+            <h1>Exercise 1 Solution</h1>
+            <p>src/App/Action/HelloAction.php</p>
+            <pre><code class="hljs no-highlight" data-trim data-noescape>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloAction</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">MiddlewareInterface</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">process</span><span class="hljs-params">(
+        ServerRequestInterface <span class="hljs-variable">$request</span>,
+        DelegateInterface <span class="hljs-variable">$delegate</span>
+    )</span>: ResponseInterface
+    </span>{
+        <span class="hljs-variable">$query</span> = <span class="hljs-variable">$request</span><span class="hljs-function">-&gt;getQueryParams</span>();
+
+        <span class="hljs-variable">$name</span> = <span class="hljs-variable">$query</span>[<span class="hljs-string">'name'</span>] ?? <span class="hljs-string">'random phper'</span>;
+
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> JsonResponse([
+            <span class="hljs-string">'hello'</span> =&gt; <span class="hljs-variable">$name</span>
+        ]);
+    }
+}
+                    </code></pre>
+        </section>
+
+        <section class="simple">
+            <h1>Check it out with</h1>
+            <pre><code class="hljs bash" data-trim>
+git checkout 04-hello-name
+                    </code></pre>
+        </section>
+
+        <section class="simple">
+            <h1>Let's move on...</h1>
+            <pre><code class="hljs bash" data-trim>
+git checkout 06-chocolates-route
+                    </code></pre>
+        </section>
+
+        <!-- https://www.flickr.com/photos/shoppeolina/9518183123/in/album-72157677614594381/ -->
+        <section class="bkg" data-background="img/9518183123_2f4bd63f30_k.jpg">
+            <h1>Our Domain</h1>
+        </section>
+
+
+        <section class="bkg">
+            <img src="img/chocolates.png">
+        </section>
+
+        <section class="simple">
+            <h2>config/routes.php</h2>
+            <pre><code class="hljs no-highlight" data-trim data-noescape>
+<span class="hljs-variable">$app</span><span class="hljs-function">-&gt;get</span>(<span class="hljs-string">'/'</span>, \App\Action\IndexAction::<span class="hljs-keyword">class</span>, <span class="hljs-string">'index'</span>);
+
+<span class="hljs-variable">$app</span><span class="hljs-function">-&gt;get</span>(<span class="hljs-string">'/hello'</span>, \App\Action\HelloAction::<span class="hljs-keyword">class</span>, <span class="hljs-string">'hello'</span>);
+
+<span class="hljs-variable">$app</span><span class="hljs-function">-&gt;get</span>(<span class="hljs-string">'/chocolates'</span>, \App\Action\ChocolatesAction::<span class="hljs-keyword">class</span>, <span class="hljs-string">'chocolates'</span>);
+                    </code></pre>
+        </section>
+
+        <section class="simple">
+            <h2>src/App/Action/ChocolatesAction.php</h2>
+            <pre><code class="hljs no-highlight" data-trim data-noescape>
+<span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ChocolatesAction</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">MiddlewareInterface</span></span>
+{
+    <span class="hljs-comment">/**
+     *<span class="hljs-phpdoc"> @var</span> ChocolatesServiceInterface
+     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-variable">$chocolates</span>;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span><span class="hljs-params">(ChocolatesServiceInterface <span class="hljs-variable">$chocolates</span>)</span>
+    </span>{
+        <span class="hljs-variable">$this</span><span class="hljs-variable">-&gt;chocolates</span> = <span class="hljs-variable">$chocolates</span>;
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">process</span><span class="hljs-params">(
+        ServerRequestInterface <span class="hljs-variable">$request</span>,
+        DelegateInterface <span class="hljs-variable">$delegate</span>
+    )</span>: ResponseInterface</span>
+    {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> JsonResponse(<span class="hljs-variable">$this</span><span class="hljs-variable">-&gt;chocolates</span><span class="hljs-function">-&gt;getAll</span>());
+    }
+}
+                    </code></pre>
+        </section>
+
+        <section class="simple">
+            <h2>config/config.php</h2>
+            <pre><code class="hljs no-highlight" data-trim data-noescape>
+<span class="hljs-variable">$aggregator</span> = <span class="hljs-keyword">new</span> ConfigAggregator([
+    App\ConfigProvider::<span class="hljs-keyword">class</span>,
+    <span class="hljs-keyword">new</span> PhpFileProvider(<span class="hljs-string">'config/autoload/&#123;&#123;,*.}global,&#123;,*.}local}.php'</span>),
+    <span class="hljs-keyword">new</span> PhpFileProvider(<span class="hljs-string">'config/development.config.php'</span>)
+]);
+
+return <span class="hljs-variable">$aggregator</span><span class="hljs-funtion">-&gt;getMergedConfig</span>();</code></pre>
+        </section>
+
+        <section class="simple">
+            <h2>src/App/ConfigProvider.php</h2>
+            <pre><code class="hljs no-highlight" data-trim data-noescape>
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getDependencies</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">return</span> [
+        <span class="hljs-string">'factories'</span>  =&gt; [
+            <span class="hljs-comment">// ACTIONS</span>
+            ChocolatesAction::<span class="hljs-keyword">class</span> =&gt; ChocolatesActionFactory::<span class="hljs-keyword">class</span>,
+
+            <span class="hljs-comment">// SERVICES</span>
+            ChocolatesServiceInterface::<span class="hljs-keyword">class</span> =&gt; ChocolatesServiceFactory::<span class="hljs-keyword">class</span>,
+
+            <span class="hljs-comment">// REPOSITORIES</span>
+            Chocolates::<span class="hljs-keyword">class</span> =&gt; SqlChocolatesFactory::<span class="hljs-keyword">class</span>,
+        ],
+    ];
+}</code></pre>
+        </section>
+
+        <section class="simple code">
+            <h2>src/App/Container/Action/ChocolatesActionFactory.php</h2>
+            <pre><code class="hljs no-highlight" data-trim data-noescape>
+<span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ChocolatesActionFactory</span></span>
+{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__invoke</span><span class="hljs-params">(ContainerInterface <span class="hljs-variable">$container</span>)</span>: ChocolatesAction
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ChocolatesAction(
+            <span class="hljs-variable">$container</span><span class="hljs-function">-&gt;get</span>(ChocolatesServiceInterface::<span class="hljs-class"><span class="hljs-keyword">class</span>)
+        );
+    }
+}
+                    </span></code></pre>
+        </section>
+
+        <section class="simple">
+            <h1>PSR-11 ContainerInterface</h1>
+            <pre><code class="hljs php" data-trim>
+interface ContainerInterface
+{
+    /**
+     * @param string $id Identifier of the entry to look for.
+     *
+     * @throws NotFoundExceptionInterface No entry was found for the identifier.
+     * @throws ContainerExceptionInterface Error while retrieving the entry.
+     *
+     * @return mixed Entry.
+     */
+    public function get($id);
+
+    /**
+     * @param string $id Identifier of the entry to look for.
+     *
+     * @return bool
+     */
+    public function has($id);
+}
+                    </code></pre>
+        </section>
+
+        <section class="bkg">
+            <img src="img/chocolates.png">
+        </section>
+
+        <section class="bkg">
+            <img src="img/chocolate.png">
+        </section>
+
+        <section class="simple code">
+            <h1>Exercise 2 (25 mins)</h1>
+            <p>get to branch 06-chocolates-route</p>
+            <h2 class="spaced">Alternative A - User List</h2>
+            <p>Create a chocolate-details (/chocolate/ID) route where ID is a proper ID of a chocolate wrapper in our domain</p>
+            <p>Interact with src/App/Domain/Service/ChocolatesService.php</p>
+            <h2 class="spaced">Alternative B - Chocolate Details</h2>
+            <p>Create a users (/users) route</p>
+            <pre><code class="hljs" data-trim>
+docs/readme.html
+                    </code></pre>
+        </section>
+
+        <section class="simple">
+            <h1>Exercise 2 Solution</h1>
+            <pre><code class="hljs no-highlight" data-trim data-noescape>
+<span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ChocolateDetailsAction</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">MiddlewareInterface</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">process</span><span class="hljs-params">(
+        ServerRequestInterface <span class="hljs-variable">$request</span>,
+        DelegateInterface <span class="hljs-variable">$delegate</span>
+    )</span>: ResponseInterface
+    </span>{
+        <span class="hljs-variable">$chocolateId</span> = ChocolateId::fromString(<span class="hljs-variable">$request</span><span class="hljs-function">-&gt;getAttribute</span>(<span class="hljs-string">'id'</span>));
+
+        <span class="hljs-variable">$chocolate</span> = <span class="hljs-variable">$this</span><span class="hljs-variable">-&gt;chocolatesService</span><span class="hljs-function">-&gt;getChocolate</span>(<span class="hljs-variable">$chocolateId</span>);
+
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> JsonResponse(<span class="hljs-variable">$chocolate</span>);
+    }
+}</code></pre>
+        </section>
+
+        <section class="simple">
+            <h1>You can check them out with</h1>
+            <pre><code class="hljs bash" data-trim>
+git checkout 07-chocolate-details-route
+                    </code></pre>
+            <pre><code class="hljs bash" data-trim>
+git checkout 08-users
+                    </code></pre>
+        </section>
+
+        <section class="simple">
+            <h1>But hey, did you notice?</h1>
+            <pre><code class="hljs no-highlight" data-trim data-noescape>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">...Action</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">MiddlewareInterface</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">process</span><span class="hljs-params">(
+        ServerRequestInterface <span class="hljs-variable">$request</span>,
+        DelegateInterface <span class="hljs-variable">$delegate</span>
+    )</span>: ResponseInterface
+    </span>{
+        ...
+    }
+}
+                    </code></pre>
+        </section>
+
+        <section class="bkg" data-background="img/cutting-onion.jpg">
+            <h1 >We used Middleware</h1>
+            <pre><code class="hljs php" data-trim>
+interface MiddlewareInterface
+{
+    /**
+     * @param ServerRequestInterface $request
+     * @param DelegateInterface $delegate
+     *
+     * @return ResponseInterface
+     */
+    public function process(
+        ServerRequestInterface $request,
+        DelegateInterface $delegate
+    );
+}
+                    </code></pre>
+        </section>
+
+        <section class="simple">
+            <h1 class="bkg">Middleware</h1>
+            <img src="img/kernel.png">
+            <aside class="notes">
+                <p>Middleware is about taking a request and turning it into a response</p>
+            </aside>
+        </section>
+
+        <section class="bkg" data-background="img/onion1.jpg">
+            <h1 class="bkg">Middleware</h1>
+        </section>
+
+        <section>
+            <img src="img/mw-onion-1.png">
+        </section>
+
+        <section>
+            <img src="img/mw-onion-2.png">
+        </section>
+
+        <section>
+            <img src="img/mw-onion-3.png">
+        </section>
+
+        <section>
+            <img src="img/mw-onion-4.png">
+        </section>
+
+        <section>
+            <img src="img/example-1.jpg">
+        </section>
+
+        <section>
+            <img src="img/example-2.jpg">
+        </section>
+
+        <section>
+            <img src="img/example-3.jpg">
+        </section>
+
+        <section class="simple">
+            <h1>Back to code...</h1>
+            <pre><code class="hljs bash" data-trim>
+git checkout 10-access-log
+                    </code></pre>
+        </section>
+
+        <section class="simple">
+            <h2>config/pipeline.php</h2>
+            <pre><code class="hljs no-highlight" data-trim data-noescape>
+<span class="hljs-variable">$app</span><span class="hljs-funtion">->pipe</span>(ErrorHandler::<span class="hljs-keyword">class</span>);
+
+<span class="hljs-variable">$app</span><span class="hljs-function">-&gt;pipe</span>(<span class="hljs-keyword">new</span> \Middlewares\ClientIp());
+<span class="hljs-variable">$app</span><span class="hljs-function">-&gt;pipe</span>(\Middlewares\AccessLog::<span class="hljs-keyword">class</span>);
+
+<span class="hljs-variable">$app</span><span class="hljs-funtion">->pipeRoutingMiddleware</span>();
+
+<span class="hljs-variable">$app</span><span class="hljs-funtion">->pipeDispatchMiddleware</span>();
+
+<span class="hljs-variable">$app</span><span class="hljs-funtion">->pipe</span>(NotFoundHandler::<span class="hljs-keyword">class</span>);
+                    </code></pre>
+        </section>
+
+        <section class="simple">
+            <h2>config/autoload/dependencies.global.php</h2>
+            <pre><code class="hljs no-highlight" data-trim data-noescape>
+<span class="hljs-keyword">return</span> [
+    <span class="hljs-string">'dependencies'</span> =&gt; [
+        <span class="hljs-string">'factories'</span>  =&gt; [
+            \Middlewares\AccessLog::<span class="hljs-keyword">class</span> =&gt;
+                \App\Container\Middleware\AccessLogFactory::<span class="hljs-keyword">class</span>,
+        ],
+    ],
+];
+                    </code></pre>
+        </section>
+
+        <section class="simple code">
+            <h2>src/App/Container/Middleware/AccessLogFactory.php</h2>
+            <pre><code class="hljs no-highlight" data-trim data-noescape>
+<span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AccessLogFactory</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__invoke</span><span class="hljs-params">(ContainerInterface <span class="hljs-variable">$container</span>)</span>
+    </span>{
+        <span class="hljs-variable">$logger</span> = <span class="hljs-keyword">new</span> Logger(<span class="hljs-string">'access'</span>);
+        <span class="hljs-variable">$filePath</span> = <span class="hljs-variable">$container</span><span class="hljs-function">-&gt;get</span>(<span class="hljs-string">'config'</span>)[<span class="hljs-string">'access_log'</span>][<span class="hljs-string">'path'</span>];
+        <span class="hljs-variable">$logger</span><span class="hljs-function">-&gt;pushHandler</span>(<span class="hljs-keyword">new</span> StreamHandler(<span class="hljs-variable">$filePath</span>));
+
+        <span class="hljs-variable">$accessLog</span> = <span class="hljs-keyword">new</span> AccessLog(<span class="hljs-variable">$logger</span>);
+
+        <span class="hljs-variable">$format</span> = <span class="hljs-string">'%v %h %u %t "%r" %&gt;s %b "%{Referer}i" -&gt; %U'</span>;
+        <span class="hljs-variable">$accessLog</span><span class="hljs-function">-&gt;format</span>(<span class="hljs-variable">$format</span>);
+        <span class="hljs-variable">$accessLog</span><span class="hljs-function">-&gt;ipAttribute</span>(<span class="hljs-string">'client-ip'</span>);
+
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$accessLog</span>;
+    }
+}</code></pre>
+        </section>
+
+        <section class="simple code">
+            <h1>Exercise 3 (25 mins)</h1>
+            <p>Get to branch 10-access-log</p>
+            <p>Create a caching middleware</p>
+            <p>For all http GET requests, make sure that a cached result is returned, when available</p>
+            <p>Bonus: have cache expire after a certain time period; have cache file path configuration within config files</p>
+            <pre><code class="hljs" data-trim>
+docs/readme.html
+                    </code></pre>
+        </section>
+
+        <section class="simple code">
+            <h1>Solution to exercise 3</h1>
+            <pre><code class="hljs bash" data-trim>
+git checkout 11-response-cache
+                    </code></pre>
+        </section>
+
+        <section class="bkg" data-background="img/reinventing-wheel.jpg">
+            <h1>Reinventing the Wheel</h1>
+        </section>
+
+        <!-- https://pixabay.com/en/dinosaur-amusement-park-dino-park-875614/ -->
+        <section class="bkg" data-background="img/dinosaur-875614_1280.jpg">
+            <h1 class="low-left">Not a Smart Idea!</h1>
+        </section>
+
+        <section>
+            <h1>Already Available Middleware</h1>
+            <ul>
+                <li>Storage-Less Sessions</li>
+                <li>Device Detection</li>
+                <li>Analytics Support</li>
+                <li>Robot-Blocking</li>
+                <li>Request Rate Limiting</li>
+                <li>And More...</li>
+            </ul>
+        </section>
+
+        <section class="simple" data-background="#151d28">
+            <div class="space10">
+                <a href="http://php-middleworld.com"><img src="img/logos/phpmiddleworld.png"></a>
+        </section>
+
+        <!-- https://pixabay.com/en/roe-deer-food-self-service-feed-2652430/ -->
+        <section class="bkg" data-background="img/roe-deer-2652430_1280.jpg">
+            <h1>Easy, isn't it?</h1>
+        </section>
+
+
+        <section class="simple">
+            <h1>How about other actions?</h1>
+            <pre><code class="hljs bash" data-trim>
+git checkout 15-delete-chocolate
+                    </code></pre>
+        </section>
+
+        <section class="simple code">
+            <h2>config/routes.php</h2>
+            <pre><code class="hljs no-highlight" data-trim data-noescape>
+<span class="hljs-variable">$app</span><span class="hljs-function">-&gt;post</span>(<span class="hljs-string">'/submit'</span>, \App\Action\SubmitChocolateAction::<span class="hljs-keyword">class</span>, <span class="hljs-string">'submit'</span>);
+
+<span class="hljs-variable">$app</span><span class="hljs-function">-&gt;post</span>(
+    <span class="hljs-string">'/approve/{id}'</span>,
+    \App\Action\ApproveChocolateAction::<span class="hljs-keyword">class</span>,
+    <span class="hljs-string">'approve'</span>
+);
+
+<span class="hljs-variable">$app</span><span class="hljs-function">-&gt;post</span>(
+    <span class="hljs-string">'/delete/{id}'</span>,
+    \App\Action\DeleteChocolateAction::<span class="hljs-keyword">class</span>,
+    <span class="hljs-string">'delete'</span>
+);
+                    </code></pre>
+        </section>
+
+        <section class="simple">
+            <h1>Related Actions</h1>
+            <pre><code class="hljs" data-trim>
+App\Action\SubmitChocolateAction.php
+                    </code></pre>
+            <pre><code class="hljs" data-trim>
+App\Action\ApproveChocolateAction.php
+                    </code></pre>
+            <pre><code class="hljs" data-trim>
+App\Action\DeleteChocolateAction.php
+                    </code></pre>
+        </section>
+
+        <section class="simple">
+            <h1>What about authentication?</h1>
+            <pre><code class="hljs bash" data-trim>
+git checkout 16.1-basic-http-authentication
+                    </code></pre>
+        </section>
+
+        <section class="simple code">
+            <h1>config/routes.php</h1>
+            <pre><code class="hljs no-highlight" data-trim data-noescape>
+<span class="hljs-variable">$app</span><span class="hljs-function">-&gt;post</span>(
+    <span class="hljs-string">'/submit'</span>,
+    [
+        \Middlewares\HttpAuthentication::<span class="hljs-keyword">class</span>,
+        \App\Action\SubmitChocolateAction::<span class="hljs-keyword">class</span>,
+    ],
+    <span class="hljs-string">'submit'</span>
+);
+
+<span class="hljs-variable">$app</span><span class="hljs-function">-&gt;post</span>(
+    <span class="hljs-string">'/approve/{id}'</span>,
+    [
+        \Middlewares\HttpAuthentication::<span class="hljs-keyword">class</span>,
+        \App\Action\ApproveChocolateAction::<span class="hljs-keyword">class</span>,
+    ],
+    <span class="hljs-string">'approve'</span>
+);
+
+[...]
+
+                    </code></pre>
+        </section>
+
+        <section class="simple code">
+            <h2>src/App/Container/Middleware/BasicHttpAuthenticationFactory.php</h2>
+            <pre><code class="hljs no-highlight" data-trim data-noescape>
+<span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BasicHttpAuthenticationFactory</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__invoke</span><span class="hljs-params">(ContainerInterface <span class="hljs-variable">$container</span>)</span>: HttpAuthentication
+    </span>{
+        <span class="hljs-comment">/**<span class="hljs-phpdoc"> @var</span> UsersServiceInterface $users */</span>
+        <span class="hljs-variable">$users</span> = <span class="hljs-variable">$container</span><span class="hljs-function">-&gt;get</span>(UsersServiceInterface::<span class="hljs-keyword">class</span>);
+
+        <span class="hljs-variable">$credentials</span> = array_reduce(
+            <span class="hljs-variable">$users</span><span class="hljs-function">-&gt;getAll</span>(),
+            <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(array <span class="hljs-variable">$carry</span>, User <span class="hljs-variable">$user</span>)</span></span> {
+                <span class="hljs-variable">$carry</span>[<span class="hljs-variable">$user</span><span class="hljs-function">-&gt;username</span>()] = <span class="hljs-variable">$user</span><span class="hljs-function">-&gt;password</span>();
+                <span class="hljs-keyword">return</span> <span class="hljs-variable">$carry</span>;
+            },
+            []
+        );
+
+        <span class="hljs-keyword">return</span> (<span class="hljs-keyword">new</span> BasicAuthentication(<span class="hljs-variable">$credentials</span>))<span class="hljs-function">
+            -&gt;attribute</span>(HttpAuthentication::<span class="hljs-keyword">class</span>);
+    }
+}</code></pre>
+        </section>
+
+        <section class="simple">
+            <h1>Let's switch to JWT...</h1>
+            <pre><code class="hljs bash" data-trim>
+git checkout 17.3-jwt-authentication
+                    </code></pre>
+        </section>
+
+        <section class="simple code">
+            <h2>config/routes.php</h2>
+            <pre><code class="hljs no-highlight" data-trim data-noescape>
+<span class="hljs-variable">$app</span><span class="hljs-function">-&gt;post</span>(
+    <span class="hljs-string">'/submit'</span>,
+    [
+        \Middlewares\HttpAuthentication::<span class="hljs-keyword">class</span>,
+        \App\Action\SubmitChocolateAction::<span class="hljs-keyword">class</span>,
+    ],
+    <span class="hljs-string">'submit'</span>
+);
+
+<span class="hljs-variable">$app</span><span class="hljs-function">-&gt;post</span>(
+    <span class="hljs-string">'/approve/{id}'</span>,
+    [
+        \Middlewares\HttpAuthentication::<span class="hljs-keyword">class</span>,
+        \App\Action\ApproveChocolateAction::<span class="hljs-keyword">class</span>,
+    ],
+    <span class="hljs-string">'approve'</span>
+);
+                    </code></pre>
+        </section>
+
+        <section class="simple">
+            <h1>JWT</h1>
+            <img src="img/jwt-authentication.png" height="500px">
+        </section>
+
+        <section class="simple">
+            <h2>config/routes.php</h2>
+            <pre><code class="hljs php" data-trim>
+$app->post('/token', \App\Action\TokenAction::class, 'token');
+                    </code></pre>
+        </section>
+
+        <section class="simple">
+            <img src="img/token.png">
+        </section>
+
+        <section class="simple code">
+            <h1>Exercise 4 (30 mins)</h1>
+            <h2 class="spaced">Alternative A - JWT Authentication</h2>
+            <p>Get to branch 17.1-jwt-authentication</p>
+            <p>Implement JWT Authentication</p>
+            <h2 class="spaced">Alternative B - Authorization</h2>
+            <p>Get to branch 16.1-basic-http-authentication</p>
+            <p>Allow for authenticated users only to submit new wrappers</p>
+            <p>Allow for administrators only to approve/delete wrappers</p>
+        </section>
+
+        <section class="simple">
+            <h1>Solution to exercise(s) 4</h1>
+            <pre><code class="hljs bash" data-trim>
+git checkout 17.3-jwt-authentication
+                    </code></pre>
+            <pre><code class="hljs bash" data-trim>
+git checkout 18-authorization
+                    </code></pre>
+        </section>
+
+        <section class="simple code">
+            <h2>config/autoload/dependencies.global.php</h2>
+            <pre><code class="hljs php" data-trim data-noescape>
+<span class="hljs-keyword">return</span> [
+    <span class="hljs-string">'dependencies'</span> =&gt; [
+        <span class="hljs-string">'factories'</span> =&gt; [
+            \Middlewares\HttpAuthentication::<span class="hljs-keyword">class</span> =&gt;
+                \App\Container\Middleware\JwtAuthenticationFactory::<span class="hljs-keyword">class</span>,
+        ]
+    ]
+];</code></pre>
+        </section>
+
+        <section class="simple">
+            <h1>config/routes.php</h1>
+            <pre><code class="hljs no-highlight" data-trim data-noescape>
+<span class="hljs-variable">$app</span><span class="hljs-function">-&gt;post</span>(
+    <span class="hljs-string">'/submit'</span>,
+    [
+        \Middlewares\HttpAuthentication::<span class="hljs-keyword">class</span>,
+        \App\Action\SubmitChocolateAction::<span class="hljs-keyword">class</span>,
+    ],
+    <span class="hljs-string">'submit'</span>
+);
+
+<span class="hljs-variable">$app</span><span class="hljs-function">-&gt;post</span>(
+    <span class="hljs-string">'/approve/{id}'</span>,
+    [
+        \Middlewares\HttpAuthentication::<span class="hljs-keyword">class</span>,
+        \App\Middleware\Authorization::<span class="hljs-keyword">class</span>,
+        \App\Action\ApproveChocolateAction::<span class="hljs-keyword">class</span>,
+    ],
+    <span class="hljs-string">'approve'</span>
+);
+                    </code></pre>
+        </section>
+
+        <section class="simple Code">
+            <h2>src/App/Middleware/Authorisation.php</h2>
+            <pre><code class="hljs no-highlight" data-trim data-noescape>
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">process</span><span class="hljs-params">(
+    ServerRequestInterface <span class="hljs-variable">$request</span>,
+    DelegateInterface <span class="hljs-variable">$delegate</span>
+)</span>: ResponseInterface</span>
+{
+    <span class="hljs-variable">$username</span> = <span class="hljs-variable">$request</span><span class="hljs-function">-&gt;getAttribute</span>(JwtAuthentication::<span class="hljs-keyword">class</span>)<span class="hljs-variable">-&gt;data</span><span class="hljs-variable">-&gt;username</span>;
+
+    $<span class="hljs-variable">user</span> = <span class="hljs-variable">$this</span><span class="hljs-variable">-&gt;usersService</span><span class="hljs-function">-&gt;getByUsername</span>(<span class="hljs-variable">$username</span>);
+
+    <span class="hljs-keyword">if</span> (! <span class="hljs-variable">$user</span><span class="hljs-function">-&gt;isAdministrator</span>()) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> EmptyResponse(<span class="hljs-number">403</span>);
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-variable">$delegate</span><span class="hljs-function">-&gt;process</span>(<span class="hljs-variable">$request</span>);
+}
+                    </code></pre>
+        </section>
+
+        <!-- https://pixabay.com/en/crash-test-collision-60-km-h-1620592/ -->
+        <section class="bkg" data-background="img/crash-test-1620592_1280.jpg">
+            <!-- If time allows -->
+            <h1 class="bkg">What About Testing</h1>
+        </section>
+
+        <section class="simple">
+            <h1>Exercise 5 (bonus)</h1>
+            <p>Get to branch 19-phpunit or 20-behat</p>
+            <p>let's write a test for the Authorization Middleware of the last exercise</p>
+            <pre><code class="hljs" data-trim>
+docs/readme.html
+                    </code></pre>
+        </section>
+
+        <section class="simple">
+            <h1>Solution to exercise 5</h1>
+            <pre><code class="hljs bash">
+git checkout 19.1-phpunit
+                    </code></pre>
+            <pre><code class="hljs bash">
+git checkout 20.1-behat
+                    </code></pre>
+        </section>
+
+        <!-- https://pixabay.com/en/cattle-show-customs-appenzellerland-1703263/ -->
+        <section class="bkg" data-background="img/cattle-show-1703263_1280.jpg">
+            <h1 class="bkg">Takeaways</h1>
+        </section>
+
+        <section class="simple" data-background="#efefef">
+            <img src="img/zend-expressive-logo.png">
+        </section>
+
+        <section class="bkg" data-background="img/onion1.jpg">
+            <h1 class="bkg">Middleware</h1>
+        </section>
+
+        <section class="bkg">
+            <h1>What about other frameworks?</h1>
+        </section>
+
+        <section class="simple">
+            <h3>Slim</h3>
+            <img src="img/logos/slim-small.png">
+            <aside class="notes">
+                <p>Microframework based on PSR-7</p>
+            </aside>
+        </section>
+
+        <section class="simple">
+            <h3>Slim</h3>
+            <pre><code class="hljs no-highlight" data-trim data-noescape>
+<span class="hljs-variable">$app</span><span class="hljs-function">-&gt;add</span>(<span class="hljs-keyword">new</span> AccessLog(<span class="hljs-variable">$logger</span>));
+
+<span class="hljs-variable">$app</span><span class="hljs-function">-&gt;add</span>(<span class="hljs-keyword">new</span> ClientIp());
+
+<span class="hljs-variable">$app</span><span class="hljs-function">-&gt;add</span>(<span class="hljs-keyword">new</span> BasicAuthentication(<span class="hljs-variable">$users</span>));</code></pre>
+
+            <aside class="notes">
+                <p>Microframework based on PSR-7</p>
+                <p>The last middleware added is the first to be executed</p>
+            </aside>
+        </section>
+
+        <section class="simple">
+            <h3>Other middleware dispatchers</h3>
+            <ul>
+                <li><a href="http://telegraphp.com/">Telegraphp</a></li>
+                <li><a href="https://github.com/mindplay-dk/middleman">Middleman</a></li>
+                <li><a href="https://github.com/ellipsephp/dispatcher">Ellipsephp dispatcher</a></li>
+            </ul>
+        </section>
+
+        <section class="simple">
+            <h3>Middleman</h3>
+            <pre><code class="hljs php" data-trim>
+$dispatcher = new Dispatcher([
+    new BasicAuthentication($users),
+    new ClientIp(),
+    new AccessLog($logger)
+]);
+                    </code></pre>
+            <aside class="notes">
+                <ul>
+                    <li>Action-Domain-Responder framework</li>
+                    <li>Relay: PSR-7 Middleware Dispatcher</li>
+                    <li>FIFO Middleware Stack</li>
+                </ul>
+            </aside>
+        </section>
+
+        <section>
+            <img src="img/final-v2.png">
+        </section>
+
+        <section>
+            <img src="img/final-v3.png">
+        </section>
+
+        <!-- https://pixabay.com/en/kitchen-culinary-cooks-helpers-81644/ -->
+        <section class="bkg" data-background="img/kitchen-81644_1280.jpg">
+            <h1>Told'ya!</h1>
+        </section>
+
+        <!-- https://pixabay.com/en/theater-cinema-curtain-stripes-1713816/ -->
+        <section class="bkg" data-background="img/theater-1713816_1280.jpg">
+            <h1>Thank you very much</h1>
+        </section>
+
+        <section>
+            <div class="space10">
+                <h4>Stay tuned for more...</h4>
+                <img src="img/logos/mva-logo.png">
+                <aside class="notes">
+                    <p>Italy-based, North-East</p>
+                    <p>Enterprise Internet applications</p>
+                    <p>Car Sharing, Hotel Entertainment, Finance, Startups...</p>
+                </aside>
+        </section>
+
+        <section class="simple">
+            <h1 style="margin-bottom: -10px ;">Speakers love feedback</h1>
+            <img src="img/joindin.png">
+            <p style="margin: 0; margin-top: -10px;">Leave your feedback at <a href="https://joind.in/talk/668cc">https://joind.in/talk/668cc</a></p>
+            <p style="margin: 0">Marco <a href="https://twitter.com/marcoshuttle">@marcoshuttle</a> <a href="mailto:m.perone@mvlabs.it">m.perone@mvlabs.it</a></p>
+            <p style="margin: 0">Steve <a href="https://twitter.com/maraspin">@maraspin</a> <a href="mailto:s.maraspin@mvlabs.it">s.maraspin@mvlabs.it</a></p>
+        </section>
+
+        <section>
+            <h1>Resources</h1>
+            <div class="credits">
+                <p><a href="https://mwop.net/blog/2015-01-26-psr-7-by-example.html">PSR-7 By Example</a> by <a href="https://twitter.com/mwop">Matthew Weier O'Phinney</a></p>
+                <p><a href="https://mwop.net/blog/2015-01-08-on-http-middleware-and-psr-7.html">On HTTP, Middleware, and PSR-7</a> by <a href="https://twitter.com/mwop">Matthew Weier O'Phinney</a></p>
+                <!--p><a href="http://www.slimframework.com/">Slim framework</a> documentation</p>
+                -->
+                <p><a href="https://zendframework.github.io/zend-expressive/">Zend Expressive</a> documentation</p>
+                <p><a href="https://github.com/php-fig/fig-standards/blob/master/proposed/http-middleware/middleware.md">Proposed Middleware Interface PSR-15</a>
+                <p><a href="https://philsturgeon.uk/php/2016/05/31/why-care-about-php-middleware/">Why Care About PHP Middleware?</a> by <a href="https://twitter.com/fillsturgeon">Phil Sturgeon</a>
+                <p><a href="http://blog.ircmaxell.com/2016/05/all-about-middleware.html">All about middleware</a> by <a href="https://twitter.com/ircmaxell">Anthony Ferrara</a>
+                <p><a href="http://paul-m-jones.com/archives/6360"> Telegraph: A Lambda-Style PSR-7 Middleware Dispatcher</a> by <a href="https://twitter.com/pmjones">Paul Jones</a>
+                <p><a href="https://packagist.org/packages/mindplay/middleman">Middleman</a>'s <a href="https://github.com/mindplay-dk/middleman">Github code repository</a>
+                <p><a href="https://framework.zend.com/blog">Zend Framework blog</a></p>
+                <p><a href="https://vimeo.com/177154167">Beyond PSR-7: The magical middleware tour</a>
+                <p>This workshop's <a href="https://github.com/mvlabs/ze-workshop">Github code repository</a></p>
+            </div>
+        </section>
+
+        <section>
+            <h1>Credits</h1>
+            <div class="credits">
+                <div style="float: left; width: 50%">
+                    <p>Feng Shui at <a href="https://pixabay.com/en/balance-zen-objects-yoga-centered-2211334/">pixabay.com</a></p>
+                    <p><a href="https://www.linkedin.com/pulse/trends-service-oriented-architecture-soa-david-mccaldin">SOA Middleware</a> by <a href="https://www.linkedin.com/in/davidmccaldin">David McCaldin</a></p>
+                    <p>Board by <a href="https://pixabay.com/en/mathematics-math-abstract-algebra-327488/">ericfleming8</a></p>
+                    <p>Chocolate at <a href="https://pixabay.com/en/dark-chocolate-bar-food-2562840/">pixabay.com</a></p>
+                    <p>Traveling at <a href="https://pixabay.com/en/camping-travel-sunrise-adventure-2581242/">pixabay.com</a></p>
+                    <p>Architecture at <a href="https://pixabay.com/en/architecture-skyscraper-1727807/">pixabay.com</a></p>
+                    <p>Orioles Fan by <a href="https://www.flickr.com/photos/keithallison/19019662724">Keith Allison</a></p>
+                    <p>Programmer at <a href="https://pixabay.com/en/computer-code-coding-programming-1828603/">pixabay.com</a></p>
+                    <p>Sleepy Dog at <a href="https://pixabay.com/en/lake-west-sunset-the-sun-sky-2522540/">pixabay.com</a></p>
+                    <p>Small Board at <a href="https://pixabay.com/en/school-old-plate-learning-1223872/">pixabay.com</a></p>
+                    <p>Lake Bump at <a href="https://pixabay.com/en/swamp-tundra-grass-autumn-bumps-2603374/">pixabay.com</a></p>
+                    <p>Networking Equipment at <a href="https://pixabay.com/en/network-connection-pc-web-address-197300/">pixabay.com</a></p>
+                    <p>Chefs at <a href="https://pixabay.com/en/kitchen-culinary-cooks-helpers-81644/">pixabay.com</a></p>
+                </div>
+
+                <div style="float:right; width: 50%">
+                    <p>Parts on Table at <a href="https://pixabay.com/en/food-preparation-parts-wood-table-1081813/">pixabay.com</a></p>
+                    <p>PSR-7 Diagram by <a href="http://weierophinney.github.io/2015-10-20-PSR-7-and-Middleware/#/">Matthew Weier O'Phinney</a></p>
+                    <p>Diamond by <a href="https://pixabay.com/en/diamond-shiny-baby-wealth-wealthy-807979/">EWAR</a></p>
+                    <p>Chocolate Wrappers by <a href="https://www.flickr.com/photos/shoppeolina/9518183123/in/album-72157677614594381/">A. Olin</a></p>
+                    <p>Cutting onion by <a href="https://commons.wikimedia.org/w/index.php?curid=10531047">Lali Masriera</a></p>
+                    <p>Middleware Flow by <a href="http://weierophinney.github.io/2015-10-20-PSR-7-and-Middleware/#/">Matthew Weier O'Phinney</a></p>
+                    <p>Weird Bicicle by <a href="https://www.flickr.com/photos/thomasguest/5491482766">Thomas Guest</a></p>
+                    <p>Dinosaur at <a href="https://pixabay.com/en/dinosaur-amusement-park-dino-park-875614/">pixabay.com</a>
+                    <p>Deer at Self Service from <a href="https://pixabay.com/en/roe-deer-food-self-service-feed-2652430/">pixabay.com</a></p>
+                    <p>JWT Flow by <a href="https://medium.com/vandium-software/5-easy-steps-to-understanding-json-web-tokens-jwt-1164c0adfcec">Mikey Stecky-Efantis</a></p>
+                    <p>Car Crash at <a href="https://pixabay.com/en/crash-test-collision-60-km-h-1620592/">pixabay.com</a>
+                    <p>Cow with a Prize at <a href="https://pixabay.com/en/cattle-show-customs-appenzellerland-1703263/">pixabay.com</a>
+                    <p>Closing Curtains at <a href="https://pixabay.com/en/theater-cinema-curtain-stripes-1713816/">pixabay.com</a>
+
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <div class="details">
+            Web Summer Camp - Rovinj, Croatia, Aug 30<sup>th</sup> 2017 -
+            <a href="https://twitter.com/marcoshuttle">@marcoshuttle</a>
+            <a href="https://twitter.com/maraspin">@maraspin</a>
+            <img src="img/logo.png" height="25">
+        </div>
+    </footer>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: false,
+            progress: true,
+            history: true,
+            center: false,
+            slideNumber: false,
+
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+            // Optional reveal.js plugins
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true },
+                { src: 'plugin/notes/notes.js', async: true }
+            ]
+        });
+
+    </script>
+
+</body>
+</html>
