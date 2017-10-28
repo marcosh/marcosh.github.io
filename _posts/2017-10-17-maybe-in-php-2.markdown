@@ -172,7 +172,7 @@ final class Maybe
         callable $justHandler,
         callable $nothingHandler
     ) {
-        $this->isJust ? $justHandler($this->value) : $nothingHandler();
+        return $this->isJust ? $justHandler($this->value) : $nothingHandler();
     }
 }
 ```
