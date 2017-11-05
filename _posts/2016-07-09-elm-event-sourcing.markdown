@@ -111,7 +111,7 @@ where `<<` is just function composition,
 corresponds to the standard `view` function in the usual Elm Architecture, and
 
     buildState : History -> State
-    buildState history = List.foldl applyEvent initialState history
+    buildState history = List.foldr applyEvent initialState history
 
 applies recursively every event, starting from `initialState`, using at every step the function
 
