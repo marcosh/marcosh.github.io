@@ -2,11 +2,11 @@
 layout: post
 title:  "Functional data validation in PHP"
 author: Marco Perone
-date:   2018-12-01 20:06:42 +0200
+date:   2018-12-03 15:06:42 +0200
 categories: post
 tags: functional-programming php dsl validation
-comments: false
-pageUrl: '"http://marcosh.github.io/post/2018/12/01/functional-data-validation.html"'
+comments: true
+pageUrl: '"http://marcosh.github.io/post/2018/12/03/functional-data-validation.html"'
 pageIdentifier: '"functional-data-validation"'
 description: "Functional data validation"
 image: "/img/valid.jpg"
