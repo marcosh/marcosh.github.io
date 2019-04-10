@@ -114,7 +114,7 @@ Applicative validation allows you to validate separately several elements and th
 ```
 CustomerId::buildValid(int $id): ValidationResult // containing a CustomerId
 
-EmailAddress::buildValid(string $email): ValidResult // containing an EmailAddress
+EmailAddress::buildValid(string $email): ValidationResult // containing an EmailAddress
 ```
 
 which validates raw data and wraps it in a `ValidationResult`. Moreover, we also have the `CustomerInfo` constructor
