@@ -12,11 +12,11 @@ description: "Applicative and monadic validation in PHP"
 image: "/img/valid1.jpg"
 ---
 
-In my [last post]({% post_url 2018-12-01-php-validation-dsl %}) I described a way to structure data validation inspired by the principles of functional programming, in particular immutability and compositionality. Such an approach allows to validate any kind of data in a safe and stateless way, building more and more complex validators starting from basic ones.
+In my [last post]({% post_url 2018-12-01-php-validation-dsl %}) I described a way to structure data validation inspired by the principles of functional programming, in particular immutability and compositionality. Such an approach allows you to validate any kind of data in a safe and stateless way, building more and more complex validators starting from basic ones.
 
-I believe it is a really nice approach, more general and elastic than many other PHP libraries which do the same thing. The only drawback I see is that, for achieving explicitness and precision, it is quite verbose. Even if data validation is a very important component of your application, it will probably never be the core domain of your business and therefore many people will prefer a slightly less general library which instead saves them learning and coding time.
+I believe it is a really nice approach, more general and flexible than many other PHP libraries which do the same thing. The only drawback I see is that, for achieving explicitness and precision, it is quite verbose. Even if data validation is a very important component of your application, it will probably never be the core domain of your business and therefore many people will prefer a slightly less general library which instead saves them learning and coding time.
 
-In this post I'm going to present a way, actually two, to define complex validators in term of simpler ones, which is really easy and terse. I'm going to do this adapting two validation techniques which are widespread in the functional programming world; they are called applicative and monadic validation, but you need not to be scared by the names! As we will see, there's nothing exoteric beyond them. Still, if you're curios where these names come from, you could have a look [here](http://adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html)
+In this post I'm going to present a way, actually two, to define complex validators in term of simpler ones, which is really easy and terse. I'm going to do this adapting two validation techniques which are widespread in the functional programming world; they are called applicative and monadic validation, but you need not be scared by the names! As we will see, there's nothing esoteric about them. Still, if you're curios where these names come from, you could have a look [here](http://adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html)
 
 ## THE VALIDATION INTERFACE
 
