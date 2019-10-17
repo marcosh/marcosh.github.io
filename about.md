@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-I am a software developer, currently working at [Sailsquare](https://github.com/statebox/idris-ct/issues/5) and [Statebox](https://statebox.org/).
+I am a software developer, currently working at [Statebox](https://statebox.org/).
 
 I love to learn, experiment and try new things. I am particularly interested in various programming paradigms, design patterns and software architecture.
 
