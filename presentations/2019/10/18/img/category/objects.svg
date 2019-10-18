@@ -1,0 +1,8 @@
+<?xml-stylesheet type="text/css" href="../../css/theme/svg.css" ?>
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink">
+  <circle class="node black" cx="200" cy="100" r="10"></circle>
+  <circle class="node black" cx="100" cy="400" r="10"></circle>
+  <circle class="node black" cx="600" cy="200" r="10"></circle>
+  <circle class="node black" cx="300" cy="300" r="10"></circle>
+  <circle class="node black" cx="500" cy="500" r="10"></circle>
+</svg>

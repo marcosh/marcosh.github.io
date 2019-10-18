@@ -1,0 +1,17 @@
+<?xml-stylesheet type="text/css" href="../../css/theme/svg.css" ?>
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink">
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="3" refY="4" orient="auto">
+      <path d="M1,1 L3,4 L1,7 L7,4 Z"></path>
+    </marker>
+    <marker id="arrowheadRed" markerWidth="8" markerHeight="8" refX="3" refY="4" orient="auto" fill="red">
+      <path d="M1,1 L3,4 L1,7 L7,4 Z"></path>
+    </marker>
+  </defs>
+  <circle cx="100" cy="300" r="10"></circle>
+  <circle cx="400" cy="300" r="10"></circle>
+  <circle cx="700" cy="300" r="10"></circle>
+  <path class="line" d="M115,300 L375,300" marker-end="url(#arrowhead)"></path>
+  <path class="line" d="M415,300 L675,300" marker-end="url(#arrowhead)"></path>
+  <path class="line" d="M385,285 C200,100 600,100 420,280" marker-end="url(#arrowhead)"></path>
+</svg>

@@ -1,0 +1,289 @@
+---
+layout: presentation
+title:  "Fun with categories @ LambdaWorld"
+date:   2019-10-18 19:00:00 +0200
+categories: [presentations]
+tags: categorytheory idris
+---
+<!doctype html>
+<html>
+  <head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Fun with categories</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/solarized.css">
+		<link rel="stylesheet" href="css/theme/marcosh.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script><link rel="stylesheet" type="text/css" href="css/print/paper.css"><script type="text/javascript" src="plugin/markdown/marked.js"></script><script type="text/javascript" src="plugin/markdown/markdown.js"></script><script type="text/javascript" src="plugin/notes/notes.js"></script><script type="text/javascript" src="plugin/highlight/highlight.js"></script>
+	<style type="text/css">.hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}</style></head>
+	<body>
+		<div class="reveal slide center has-horizontal-slides ready" role="application" data-transition-speed="default" data-background-transition="fade" style="cursor: none;">
+			<div class="slides" style="width: 960px; height: 700px; inset: 50% auto auto 50%; transform: translate(-50%, -50%) scale(0.766629);">
+				<section style="top: 103px; display: block;" data-markdown="" data-markdown-parsed="true" class="present"><h1 id="🎉-fun-with-categories-🎉">🎉 FUN WITH CATEGORIES 🎉</h1>
+</section><section style="top: 100.5px; display: block;" data-markdown="" data-markdown-parsed="true" aria-hidden="true" class="future" hidden=""><h2 id="marco-perone">Marco Perone</h2>
+<p><a href="https://twitter.com/marcoshuttle">twitter.com/marcoshuttle</a></p>
+<p><a href="https://github.com/marcosh">github.com/marcosh</a></p>
+<p><a href="https://marcosh.github.com">marcosh.github.com</a></p>
+<p><a href="https://medium.com/@marcosh">medium.com/@marcosh</a></p>
+<aside class="notes"><p>I tweet, I blog, I contribute to open source</p>
+</aside></section><section style="top: 42px; display: block;" data-markdown="" data-markdown-parsed="true" aria-hidden="true" class="future" hidden=""><p><img src="img/statebox_simpleblack_txt_bottom.png" alt="statebox"></p>
+<p><a href="https://statebox.org">statebox.org</a></p>
+<p><a href="https://github.com/statebox">github.com/statebox</a></p>
+<aside class="notes"><p>I also work</p>
+</aside></section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" aria-hidden="true" class="future" hidden=""><h2 id="what-is-category-theory">What is category theory?</h2>
+<aside class="notes"><ul>
+<li>general setting to speak about composition and computation</li>
+<li>provides concepts as <code>Functor</code>, <code>Monad</code>, <code>Natural Transformation</code></li>
+</ul>
+</aside></section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" aria-hidden="true" class="future" hidden=""><blockquote>
+<p>Category Theory is indeed general abstract nonsense
+and that it is precisely because of that that it is
+so important both mathematically and philosophically.</p>
+</blockquote>
+<p>from <a href="https://zenodo.org/record/584073/files/MarquisPoli2006.pdf">"What is Category Theory?"</a></p>
+<p>by <a href="https://recherche.umontreal.ca/english/our-researchers/professors-directory/researcher/is/in15376/">Jean-Pierre Marquis</a></p>
+<aside class="notes"><p>what is category theory?</p>
+<p>even among mathematicians sometimes described as abstract nonsense</p>
+<p>but that is good because:</p>
+<ul>
+<li>no noise</li>
+<li>general</li>
+</ul>
+</aside></section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" aria-hidden="true" class="future" hidden=""><p><img src="img/databases.png" alt="databases"></p>
+<aside class="notes"><p>databases and data migrations</p>
+</aside></section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" aria-hidden="true" class="future" hidden=""><p><img src="img/dynamical-systems.png" alt="dynamical systems"></p>
+<aside class="notes"><p>dynamical systems</p>
+</aside></section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" aria-hidden="true" class="future" hidden=""><p><img src="img/game-theory.png" alt="game theory"></p>
+<aside class="notes"><p>game theory</p>
+</aside></section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" aria-hidden="true" class="future" hidden=""><p><img src="img/linguistics.png" alt="linguistics"></p>
+<aside class="notes"><p>linguistics</p>
+</aside></section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" aria-hidden="true" class="future" hidden=""><p><img src="img/machine-learning.png" alt="machine learning"></p>
+<aside class="notes"><p>machine learning</p>
+</aside></section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" aria-hidden="true" class="future" hidden=""><p><img src="img/manufacturing.png" alt="manufacturing"></p>
+<aside class="notes"><p>manufacturing</p>
+</aside></section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" aria-hidden="true" class="future" hidden=""><p><img src="img/probability.png" alt="probability"></p>
+<aside class="notes"><p>probability</p>
+</aside></section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" aria-hidden="true" class="future" hidden=""><p><img src="img/processes.png" alt="processes"></p>
+<aside class="notes"><p>processes
+concurrent and distibuted computations</p>
+</aside></section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" aria-hidden="true" class="future" hidden=""><p><a href="https://github.com/statebox/awesome-applied-category-theory">statebox/awesome-applied-category-theory</a></p>
+<aside class="notes"><p>many more resources here</p>
+<p>if we really want to apply CT to these fields, we want to write software</p>
+<p>we need sofware which speaks CT</p>
+</aside></section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" aria-hidden="true" class="future" hidden=""><h2 id="a-category-theory-library">A Category Theory library</h2>
+<p><a href="https://github.com/statebox/idris-ct">statebox/idris-ct</a></p>
+<ul>
+<li class="fragment" data-fragment-index="0">practically usable <!-- --></li>
+<li class="fragment" data-fragment-index="1">verified <!-- --></li>
+</ul>
+<aside class="notes"><p>we need to have the same safety which math provides (even more, because proof checked)</p>
+<p>still, not too abstract so that it becomes inpractical</p>
+</aside></section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" aria-hidden="true" class="future" hidden=""><p><a href="idris-lang.org">idris-lang.org</a></p>
+<p><img src="img/idris.jpg" alt="idris"></p>
+<aside class="notes"><p>general purpose pure functional programming language
+with dependent types</p>
+</aside></section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" aria-hidden="true" class="future" hidden=""><h2 id="types-allow-us-to-encode-proofs">Types allow us to encode proofs</h2>
+<pre><code class="language-haskell hljs">data LTE  : (n, m : Nat) -> Type where
+  LTEZero : LTE Z    right
+  LTESucc : LTE left right -> LTE (S left) (S right)</code></pre>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" aria-hidden="true" class="future" hidden=""><p>Haskell</p>
+<pre><code class="language-haskell hljs">head : List A -> A</code></pre>
+<p class="fragment" data-fragment-index="0">Safer Haskell <!-- --></p>
+<pre class="fragment" data-fragment-index="0"><code class="language-haskell hljs">headMaybe : List A -> Maybe A</code></pre>
+<!-- -->
+
+<p class="fragment" data-fragment-index="1">Idris <!-- --></p>
+<pre class="fragment" data-fragment-index="1"><code class="language-haskell hljs">nonEmptyHead : (l : List A ** IsNonEmpty l) -> A</code></pre>
+<!-- -->
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" aria-hidden="true" class="future" hidden=""><h2 id="what-is-a-category">What is a category?</h2>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" data-transition="slide-in none-out" aria-hidden="true" class="future" hidden=""><!-- -->
+
+<p>Objects</p>
+<p><object data="img/category/objects.svg" type="image/svg+xml"></object></p>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" data-transition="fade-in fade-out" aria-hidden="true" class="future" hidden=""><!-- -->
+
+<p>Morphisms</p>
+<p><object data="img/category/morphisms.svg" type="image/svg+xml"></object></p>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" data-transition="fade-in fade-out" aria-hidden="true" class="future" hidden=""><!-- -->
+
+<p>Composition</p>
+<p><object data="img/category/composition1.svg" type="image/svg+xml"></object></p>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" data-transition="fade-in fade-out" aria-hidden="true" class="future" hidden=""><!-- -->
+
+<p>Composition</p>
+<p><object data="img/category/composition2.svg" type="image/svg+xml"></object></p>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" data-transition="fade-in fade-out" aria-hidden="true" class="future" hidden=""><!-- -->
+
+<p>Composition</p>
+<p><object data="img/category/composition3.svg" type="image/svg+xml"></object></p>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" data-transition="fade-in fade-out" aria-hidden="true" class="future" hidden=""><!-- -->
+
+<p>Composition</p>
+<p><object data="img/category/composition4.svg" type="image/svg+xml"></object></p>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" data-transition="fade-in fade-out" aria-hidden="true" class="future" hidden=""><!-- -->
+
+<p>Composition</p>
+<p><object data="img/category/composition5.svg" type="image/svg+xml"></object></p>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" data-transition="fade-in fade-out" aria-hidden="true" class="future" hidden=""><!-- -->
+
+<p>Composition</p>
+<p><object data="img/category/composition6.svg" type="image/svg+xml"></object></p>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" data-transition="fade-in fade-out" aria-hidden="true" class="future" hidden=""><!-- -->
+
+<p>Composition</p>
+<p><object data="img/category/composition7.svg" type="image/svg+xml"></object></p>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" data-transition="fade-in fade-out" aria-hidden="true" class="future" hidden=""><!-- -->
+
+<p>Composition</p>
+<p><object data="img/category/composition8.svg" type="image/svg+xml"></object></p>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" data-transition="fade-in fade-out" aria-hidden="true" class="future" hidden=""><!-- -->
+
+<p>Identities</p>
+<p><object data="img/category/identities1.svg" type="image/svg+xml"></object></p>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" data-transition="fade-in fade-out" aria-hidden="true" class="future" hidden=""><!-- -->
+
+<p>Identities</p>
+<p><object data="img/category/identities2.svg" type="image/svg+xml"></object></p>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" data-transition="fade-in fade-out" aria-hidden="true" class="future" hidden=""><!-- -->
+
+<p>Coherence conditions</p>
+<p><object data="img/category/category.svg" type="image/svg+xml"></object></p>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" data-transition="fade-in fade-out" aria-hidden="true" class="future" hidden=""><!-- -->
+
+<p>Left identity</p>
+<p><object data="img/category/left-identity1.svg" type="image/svg+xml"></object></p>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" data-transition="fade-in fade-out" aria-hidden="true" class="future" hidden=""><!-- -->
+
+<p>Left identity</p>
+<p><object data="img/category/left-identity2.svg" type="image/svg+xml"></object></p>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" data-transition="fade-in fade-out" aria-hidden="true" class="future" hidden=""><!-- -->
+
+<p>Right identity</p>
+<p><object data="img/category/right-identity1.svg" type="image/svg+xml"></object></p>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" data-transition="fade-in fade-out" aria-hidden="true" class="future" hidden=""><!-- -->
+
+<p>Right identity</p>
+<p><object data="img/category/left-identity2.svg" type="image/svg+xml"></object></p>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" data-transition="fade-in fade-out" aria-hidden="true" class="future" hidden=""><!-- -->
+
+<p>Associativity</p>
+<p><object data="img/category/associativity1.svg" type="image/svg+xml"></object></p>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" data-transition="fade-in fade-out" aria-hidden="true" class="future" hidden=""><!-- -->
+
+<p>Associativity</p>
+<p><object data="img/category/associativity2.svg" type="image/svg+xml"></object></p>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" data-transition="fade-in fade-out" aria-hidden="true" class="future" hidden=""><!-- -->
+
+<p>Associativity</p>
+<p><object data="img/category/associativity3.svg" type="image/svg+xml"></object></p>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" data-transition="fade-in fade-out" aria-hidden="true" class="future" hidden=""><!-- -->
+
+<p>Associativity</p>
+<p><object data="img/category/associativity4.svg" type="image/svg+xml"></object></p>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" data-transition="fade-in fade-out" aria-hidden="true" class="future" hidden=""><!-- -->
+
+<p>Associativity</p>
+<p><object data="img/category/associativity5.svg" type="image/svg+xml"></object></p>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" data-transition="fade-in fade-out" aria-hidden="true" class="future" hidden=""><!-- -->
+
+<p>Associativity</p>
+<p><object data="img/category/associativity6.svg" type="image/svg+xml"></object></p>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" aria-hidden="true" class="future" hidden=""><h2 id="what-is-a-functor">What is a functor?</h2>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" aria-hidden="true" class="future" hidden=""><p>Mapping objects</p>
+<p><img src="img/functor1.png" alt="functor1" title="https://gitlab.esy.fun/yogsototh/Category-Theory-Presentation/blob/master/categories/img/mp/functor.png"></p>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" aria-hidden="true" class="future" hidden=""><p>Mapping morphisms</p>
+<p><img src="img/functor2.png" alt="functor2" title="https://gitlab.esy.fun/yogsototh/Category-Theory-Presentation/blob/master/categories/img/mp/functor-morphism.png"></p>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" aria-hidden="true" class="future" hidden=""><h2 id="demo-time">DEMO TIME</h2>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" data-transition="slide-in fade-out" aria-hidden="true" class="future" hidden=""><!-- -->
+
+<p>Consider a graph</p>
+<p><object data="img/graph/graph.svg" type="image/svg+xml"></object></p>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" data-transition="fade-in fade-out" aria-hidden="true" class="future" hidden=""><!-- -->
+
+<p>Make a category out of it</p>
+<p><object data="img/graph/category.svg" type="image/svg+xml"></object></p>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" data-transition="fade-in fade-out" aria-hidden="true" class="future" hidden=""><!-- -->
+
+<p>Map out of it with a functor</p>
+<p><object data="img/graph/graph.svg" type="image/svg+xml"></object></p>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" data-transition="fade-in fade-out" aria-hidden="true" class="future" hidden=""><!-- -->
+
+<p>Map out of it with a functor</p>
+<p><object data="img/graph/functor1.svg" type="image/svg+xml"></object></p>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" data-transition="fade-in fade-out" aria-hidden="true" class="future" hidden=""><!-- -->
+
+<p>Map out of it with a functor</p>
+<p><object data="img/graph/functor2.svg" type="image/svg+xml"></object></p>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" data-transition="fade-in fade-out" aria-hidden="true" class="future" hidden=""><!-- -->
+
+<p>Choose a path</p>
+<p><object data="img/graph/path.svg" type="image/svg+xml"></object></p>
+</section><section style="top: 350px; display: none;" data-markdown="" data-markdown-parsed="true" data-transition="fade-in fade-out" aria-hidden="true" class="future" hidden=""><!-- -->
+
+<p>Provide initial value</p>
+<p><object data="img/graph/initial.svg" type="image/svg+xml"></object></p>
+</section><section style="top: 171.5px; display: none;" data-markdown="" data-markdown-parsed="true" aria-hidden="true" class="future" hidden=""><h2 id="recap">Recap</h2>
+<ul>
+<li class="fragment" data-fragment-index="0">Categorise it <!-- --></li>
+<li class="fragment" data-fragment-index="1">Add a semantic <!-- --></li>
+<li class="fragment" data-fragment-index="2">🎉 HAVE FUN 🎉 <!-- --></li>
+</ul>
+</section><section style="top: 13.5px; display: none;" data-markdown="" data-markdown-parsed="true" aria-hidden="true" class="future" hidden=""><p><img src="img/solong.jpg" alt="solong"></p>
+</section><section style="top: 59.5px; display: none;" data-markdown="" data-markdown-parsed="true" class="future" aria-hidden="true" hidden=""><h2 id="resources">Resources</h2>
+<p><a href="https://github.com/statebox/idris-ct">statebox/idris-ct</a></p>
+<p><a href="https://statebox.org">statebox.org</a></p>
+<p><a href="https://github.com/statebox/awesome-applied-category-theory">statebox/awesome-applied-category-theory</a></p>
+<p><a href="https://t.me/appliedcategorytheory">t.me/appliedcategorytheory</a></p>
+<p><a href="https://t.me/stateboxorg">t.me/stateboxorg</a></p>
+</section>
+			</div>
+
+			<footer>
+                <div class="details">
+                #LambdaWorld - Cadiz, October 17<sup>th</sup>/18<sup>th</sup> 2019 -
+                <a href="https://twitter.com/marcoshuttle">@marcoshuttle</a> -
+                <a href="https://twitter.com/statebox">@statebox</a>
+                <img src="img/statebox.png">
+            </div></footer>
+		<div class="backgrounds"><div class="slide-background present" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background future" style="display: none;" data-loaded="true"><div class="slide-background-content"></div></div></div><div class="progress" style="display: block;"><span style="width: 0px;"></span></div><aside class="controls" style="display: none;" data-controls-layout="bottom-right" data-controls-back-arrows="faded"><button class="navigate-left" aria-label="previous slide" disabled="disabled"><div class="controls-arrow"></div></button><button class="navigate-right enabled highlight" aria-label="next slide"><div class="controls-arrow"></div></button><button class="navigate-up" aria-label="above slide" disabled="disabled"><div class="controls-arrow"></div></button><button class="navigate-down" aria-label="below slide" disabled="disabled"><div class="controls-arrow"></div></button></aside><div class="slide-number" style="display: none;"></div><div class="speaker-notes" data-prevent-swipe="" tabindex="0"></div><div class="pause-overlay"></div><div style="position: absolute; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px);" id="aria-status-div" aria-live="polite" aria-atomic="true">🎉 FUN WITH CATEGORIES 🎉
+</div></div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				controls: false,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide',
+
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	<script src="//0.0.0.0:35729/livereload.js?snipver=1" async="" defer=""></script>
+
+</body></html>
