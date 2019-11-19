@@ -36,7 +36,7 @@ Phantom types are useful because they allow to add at the type level information
 
 A type parameter is said to be `ambiguous` if it can not be correctly inferred by the type checker. This happens with phantom types because the compiler, having no way to infer the actual type of the phantom parameter, considers it ambiguous. The extension `AllowAmbiguousTypes` allows us to ask the compiler to be a little more patient and not error immediately when it detects an ambiguous type.
 
-Still, since the compiler is not able to infer them, we need a way to manually specify the value of an ambiguous type. This is possible with the `@` syntax using the [`TypeApplications`](https://downloads.haskell.org/~ghc/8.2.1/docs/html/users_guide/glasgow_exts.html#ghc-flag--XTypeApplications) extension.
+Still, since the compiler is not able to infer it, we need a way to manually specify the value of an ambiguous type. This is possible with the `@` syntax using the [`TypeApplications`](https://downloads.haskell.org/~ghc/8.2.1/docs/html/users_guide/glasgow_exts.html#ghc-flag--XTypeApplications) extension.
 
 Let's see these techniques in action while we try to solve our initial question.
 
