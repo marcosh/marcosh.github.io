@@ -18,6 +18,8 @@ Some months ago the need to release a new version of our risk engine emerged, so
 
 The decision we took was to use [Haskell](https://www.haskell.org/). In this post we will try to summarise our path, from the initial situation and the perplexities around the usage of a new technology, to the actual release in production.
 
+If you prefer, you can read the italian version of this post on [Soisy's blog](https://www.soisy.it/introduzione-haskell-stack-tecnologico/).
+
 ## A bit of context, what is our risk engine?
 
 As we mentioned above, Soisy provides a payment by instalments system. As any service in the buy-now-pay-later market, we need to protect ourselves from possible insolvencies from our customers.
