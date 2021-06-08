@@ -536,7 +536,7 @@ interface Validator
 }
 ```
 
-what should be the return type? <!-- .element: class="fragment" -->
+what should the return type be? <!-- .element: class="fragment" -->
 
 ---
 
@@ -859,6 +859,10 @@ $user = $userRepository->find($id);
 // Psalm complains
 $order = $orderRepository->find($id);
 ```
+
+---
+
+> One week of debugging saved me from an hour of type modelling
 
 ---
 
