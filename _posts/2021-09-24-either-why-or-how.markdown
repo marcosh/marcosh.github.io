@@ -16,13 +16,13 @@ image: "/img/either.png"
 
 In this post I'll try to give an explanation on the benefits of using the `Either` data structure, both from a theoretical and from a practical point of view. I'll provide examples in `Haskell` and `PHP` with [Psalm](https://psalm.dev/), because these are the languages I know, but the same ideas are easily adaptable to any other programming language.
 
-This post is basically a transcript of an explanation I gave about `Either` to my colleagues at `Soisy`, where we are starting to use extensively `Either` in our `PHP` codebase.
+This post is basically a transcript of an explanation I gave about `Either` to my colleagues at [`Soisy`](), where we are starting to extensively use `Either` in our `PHP` codebase. I'd like to thank them all for the support and the precious feedback.
 
-## Let' start from the why
+## Let's start from the why
 
 The main reason to introduce `Either`, as many other data structures, in a codebase comes from the desire to make the code satisfy [referential transparency](https://www.wikiwand.com/en/Referential_transparency), which brings a lot of goodies:
 
-- the code is simpler (non necessarily [easier](https://www.infoq.com/presentations/Simple-Made-Easy/)), because there are less moving parts and less communications channels
+- the code is simpler (non necessarily [easier](https://www.infoq.com/presentations/Simple-Made-Easy/)), because there are less moving parts and less communication channels
 - the code is easier to reason about, because it has a clear semantic
 - the code is easier to test, because we can just check the output is the expected one given a certain input
 - the code is easier to refactor
@@ -38,7 +38,7 @@ Luckily, we can have the cake and eat it, too! The trick is to represent effects
 
 If we think about operations which can fail, like validations and parsing, we can see that they have an input, which is the datum we want to validate or parse, and an output, which can be either a success, containing the desired result, or a failure, containing some information about what failed.
 
-It comes quite natural to model this with a function which takes an input and return either a success or a failure.
+It comes quite natural to model this with a function which takes an input and returns either a success or a failure.
 
 ```haskell
 -- haskell
@@ -66,7 +66,7 @@ Once we are able to represent the concept of _something is either this or that_ 
 
 ## Modelling `Either`
 
-Our task now is to model an `Either` data structure. To do this, we need to consider which actually are the requirements that such a structure needs to satisfy.
+Our task now is to model an `Either` data structure. To do this, we need to consider the requirements that such a structure needs to satisfy.
 
 It might not be completely straightforward, but the requirements which characterize the concept of something which could be `Either` `a` or `b` are the following:
 
@@ -218,7 +218,7 @@ For a more complete implementation of `Either` in PHP, take a look at [this](`ht
 
 ## What can we do with this?
 
-Now it's time to see some example and some concrete benefits of such an approach. Let's see some of the things which come quite easy and natural once we have the `Either` data structure in place.
+Now it's time to see some examples and some concrete benefits of such an approach. Let's see some of the things which come quite easy and natural once we have the `Either` data structure in place.
 
 I'll try to provide some concrete examples all in the context of parsing/validation.
 
@@ -239,7 +239,7 @@ class User
 }
 ```
 
-The function `birthDate` does not know anything about `Either`, so how can we use it when we only have an `Either Error User`? Luckily `Either` allows to lift a function which knows nothing about it to a function which works nicely with it. This is done using the so called `map` combinator
+The function `birthDate` does not know anything about `Either`, so how can we use it when we only have an `Either Error User`? Luckily `Either` allows to transform a function which knows nothing about it to a function which works nicely with it. This is done using the so called `map` combinator
 
 ```haskell
 -- haskell
@@ -285,7 +285,7 @@ class User
 }
 ```
 
-If you want build a user, you need to first build a `Name` and a `Surname`. Suppose we already have a way to parsing strings to `Name` and `Surname`
+If you want to build a user, you need to first build a `Name` and a `Surname`. Suppose we already have a way to parse strings to `Name` and `Surname`
 
 ```haskell
 -- haskell
@@ -312,7 +312,7 @@ class Surname
 }
 ```
 
-What we would like to do now is to pass the results of the parsing of `Name` and `Surname` to the constructor of `User` but, as in the previous paragraph, our arguments are wrapped in `Either Error` and therefore we can't simply pass them to the constructor.
+What we would like to do now is pass the results of the parsing of `Name` and `Surname` to the constructor of `User` but, as in the previous paragraph, our arguments are wrapped in `Either Error` and therefore we can't simply pass them to the constructor.
 
 We're still in luck since `Either` allows to lift a function of any arity (i.e. with any number of arguments) to its context
 
@@ -340,15 +340,15 @@ $eitherUser = Either::liftA(
 );
 ```
 
-The difference in the implementation between Haskell and PHP is due to the fact that in Haskell every function is curried by default, which makes it easier to use simpler operators.
+The difference in the implementation between Haskell and PHP is due to the fact that in Haskell every function is [curried](https://en.wikipedia.org/wiki/Currying) by default, which makes it easier to use simpler operators.
 
 #### What happens to the errors?
 
 The code above looks nice, but there is a subtle thing which is not clear. Try to think about the case when both the parsing of the name and the parsing of the surname failed. What should be the final error? Should we stop the computation as soon as one piece of the puzzle fails? Or should we collect and report all the errors?
 
-There is not correct answer here, it really depends on the context and on the situation. so we need to make space for both options.
+There is no correct answer here, it really depends on the context and on the situation, so we need to make space for both options.
 
-Haskell by default stops as soon as it finds one error and reports just that one. If you want to collect all the errors, you should use [`Validation`](https://hackage.haskell.org/package/either/docs/Data-Either-Validation.html#t:Validation) instead. As a datatype its definition is not different than the `Either` one. The main thing which changes is the [`Applicative`](https://hackage.haskell.org/package/base-4.12.0.0/docs/Control-Applicative.html#t:Applicative) instance, allowing us to collect errors. Notice that the instance requires a `Semigroup` constraint on `Error`, which allows us to accumulate the errors themselves.
+Haskell by default stops as soon as it finds one error and reports just that one. If you want to collect all the errors, you should use [`Validation`](https://hackage.haskell.org/package/either/docs/Data-Either-Validation.html#t:Validation) instead. As a datatype its definition is not different from the `Either` one. The main thing which changes is the [`Applicative`](https://hackage.haskell.org/package/base-4.12.0.0/docs/Control-Applicative.html#t:Applicative) instance, allowing us to collect errors. Notice that the instance requires a `Semigroup` constraint on `Error`, which allows us to accumulate the errors themselves.
 
 In PHP the most reasonable thing to do is to modify the `liftA` implementation, adding a parameter which specifies how to behave when we have more than one error
 
@@ -434,7 +434,7 @@ The difference in the implementation here is due to object orientation. The sign
 (>=>) :: (a -> Either e b) -> (b -> Either e c) -> a -> Either e c
 ```
 
-As you can see it has only functions as inputs. This prevents it to implementing it as a concrete method of a class. A completely equivalent formulation of `>=>` is
+As you can see `>=>` has only functions as inputs. This prevents us from implementing it as a concrete method of a class. We can solve by using a completely equivalent formulation of `>=>`, which is
 
 ```haskell
 bind :: Either e a -> (a -> Either e b) -> Either a b
@@ -442,12 +442,29 @@ bind :: Either e a -> (a -> Either e b) -> Either a b
 
 Its first argument is a concrete datatype and therefore we can implement it as a method of the `Either` class.
 
+```php
+/**
+ * @template E
+ * @template A
+ */
+class Either
+{
+  /**
+   * @template B
+   * @param callable(A): Either<E, B> $next
+   * @return Either<E, B>
+   */
+  public static function bind(callable $next): self {..}
+}
+```
+
+
 ## Conclusion
 
 `Either` is a data structure which allows describing in a single datatype/class the fact that something could be either one of two things. This turns out to be very helpful also in domain modelling, when a single concept could have different instances.
 
-`Either` particularly shines when it is used to represent the result of a computation which might fail. This allows us in the first place to gain all the benefits which referential transparency offers. Moreover, it allows to create a very expressive API which leads to a very declarative style of programming.
+`Either` particularly shines when it is used to represent the result of a computation which might fail. This allows us in the first place to gain all the benefits which referential transparency offers. Moreover, it allows the creation of a very expressive API which leads to a very declarative style of programming.
 
 As a data structure `Either` is much more used in functional languages, but it could be used with great advantage in any language which offers higher order functions and type variables/generics.
 
-If you hadn't already, I'd encourage you to try to use it in your code base. Once you do, it's hard you'll want to go back.
+If you haven't already, I'd encourage you to try to use it in your code base. Once you do, it's hard you'll want to go back.
