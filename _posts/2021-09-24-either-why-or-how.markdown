@@ -214,7 +214,7 @@ class Either
 }
 ```
 
-For a more complete implementation of `Either` in PHP, take a look at [this](`https://github.com/marcosh/php-validation-dsl/blob/master/src/Result/ValidationResult.php`) or [this](https://github.com/marcosh/lamphpda/blob/master/src/Either.php).
+For a more complete implementation of `Either` in PHP, take a look at [this](https://github.com/marcosh/php-validation-dsl/blob/master/src/Result/ValidationResult.php) or [this](https://github.com/marcosh/lamphpda/blob/master/src/Either.php).
 
 ## What can we do with this?
 
