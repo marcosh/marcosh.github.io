@@ -24,7 +24,7 @@ It describes an high level perspective on how to model domains using the element
 - an `event` might be processed also by a `projection`, which updates a `read model`.
 - based on the information presented in the `read model`, the user requests a new `command` and the cycle starts again.
 
-What I always liked about this approach to modelling an application is how easily it could be transformed into working software, using event sourcing and cqrs. Still, being at a high level ob abstraction, it ignores how to implement aggregates, policies and projections.
+What I always liked about this approach to modelling an application is how easily it could be transformed into working software, using event sourcing and cqrs. Still, being at a high level of abstraction, it ignores how to implement aggregates, policies and projections.
 
 In this blog post I would like to discuss how using state machines to implement aggregates, policies and projections lead to the creation of a precise and composable domain model.
 
@@ -118,7 +118,7 @@ This is basically dual to what an aggregate does. An aggregate processes command
 
 In our discussion, up to this point, everything is pure and deterministic. It would be nice if every real system would be so, but this is often not the case. More often than not we need to interact with the outside world and communicate with external services. So we need to find a way to fit non pure operations somewhere inside our model.
 
-Aggregates are the most delicate part of our system, the one which is tasked to check and preserve all the system invariants; therefore we would like to keep them pure to be able to inspect easily their behaviour and test them easily.
+Aggregates are the most delicate part of our system, the one which is tasked to check and preserve all the system invariants; therefore we would like to keep them pure to be able to easily inspect and test their behaviour.
 
 Projections are pure operations by nature, they just need to process event streams to create different visualizations of the data contained by the events themselves. Therefore it doesn't make sense to have projections which are not pure operations.
 
@@ -128,7 +128,7 @@ The only option we are left with are policies. And it makes a lot of sense to ha
 - interact with the external world
 - according to the response received from the external world, emit a new command
 
-For example, a policy could be used to model a payment system interacting with an external gateway. A policy `PaymentPolicy` could receive an event `PaymentRequested` and react to it by asking the remote gateway to process the actual payment. According to the response of the gateway, positive or negative, the policy can emit a `PaymentCompleted` or a `PaymentFailed` event.
+For example, a policy could be used to model a payment system interacting with an external gateway. A policy `PaymentPolicy` could receive an event `PaymentRequested` and react to it by asking the remote gateway to process the actual payment. According to the response of the gateway, positive or negative, the policy can emit a `CompletePayment` or a `FailPayment` command.
 
 For the ones who care about typing, to allow such behaviour, we need to generalize a bit our `Mealy` type, so that it allows performing generic side effects. We could define a type
 
