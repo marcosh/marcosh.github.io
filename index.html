@@ -20,6 +20,20 @@ layout: default
     {% endfor %}
   </ul>
 
+  <h1 class="page-heading">External posts</h1>
+
+  <ul class="post-list">
+    {% for post in site.external_posts %}
+      <li>
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+
+        <h2>
+          <a class="post-link" href="{{ post.url }}">{{ post.title }}</a>
+        </h2>
+      </li>
+    {% endfor %}
+  </ul>
+
   <h1 class="page-heading">Presentations</h1>
 
   <ul class="post-list">

@@ -21,3 +21,32 @@ kramdown:
 
 # My settings
 categories: [presentations]
+
+external_posts:
+  - date: 2022-05-05 00:00:00 +0200
+    url: https://www.tweag.io/blog/2022-05-05-existential-optics/
+    title: Existential optics
+
+  - date: 2019-10-16 00:00:00 +0200
+    url: https://medium.com/statebox/more-categorical-thoughts-on-lawful-lenses-9dba9fb269fd
+    title: More (Categorical) Thoughts on Lawful Lenses
+
+  - date: 2019-10-16 00:00:00 +0200
+    url: https://medium.com/statebox/on-lawful-lenses-6e18a1e17bdf
+    title: On lawful lenses
+
+  - date: 2019-04-29 00:00:00 +0200
+    url: https://medium.com/statebox/programming-is-just-an-example-6bc6bacb7b72
+    title: Programming languages as categories
+
+  - date: 2019-03-21 00:00:00 +0200
+    url: https://medium.com/statebox/fun-with-functors-95e4e8d60d87
+    title: Fun with functors
+
+  - date: 2019-02-28 00:00:00 +0200
+    url: https://medium.com/statebox/concrete-categories-af444d5f055e
+    title: Concrete categories
+
+  - date: 2019-02-20 00:00:00 +0200
+    url: https://medium.com/statebox/fun-with-categories-70c64649b8e0
+    title: Fun with categories
