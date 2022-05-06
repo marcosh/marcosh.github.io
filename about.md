@@ -5,7 +5,7 @@ header: true
 permalink: /about/
 ---
 
-I am a software developer, currently working at [Soisy](https://www.soisy.it/).
+I am a software developer, currently working at [Tweag](https://www.tweag.io).
 
 I love to learn, experiment and try new things. I am particularly interested in various programming paradigms, design patterns and software architecture.
 
