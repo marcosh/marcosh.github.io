@@ -23,6 +23,10 @@ kramdown:
 categories: [presentations]
 
 external_posts:
+  - date: 2022-11-08 00:00:00 +0200
+    url: https://www.tweag.io/blog/2022-11-08-functional-programming-from-sets-and-functions/
+    title: Functional programming from sets and functions
+
   - date: 2022-05-05 00:00:00 +0200
     url: https://www.tweag.io/blog/2022-05-05-existential-optics/
     title: Existential optics
