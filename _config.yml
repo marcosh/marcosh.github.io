@@ -23,6 +23,10 @@ kramdown:
 categories: [presentations]
 
 external_posts:
+  - date: 2023-04-13 00:00:00 +0200
+    url: https://www.tweag.io/blog/2023-04-13-crem-state-machines/
+    title: "Crem: compositional representable executable machines"
+
   - date: 2022-11-08 00:00:00 +0200
     url: https://www.tweag.io/blog/2022-11-08-functional-programming-from-sets-and-functions/
     title: Functional programming from sets and functions
