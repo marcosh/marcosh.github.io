@@ -6,7 +6,7 @@ date: 2025-03-10 08:06:42 +0200
 categories: post
 tags: haskell monad natural transformation functional
 comments: true
-pageUrl: '"http://marcosh.github.io/post/2021/10/27/combining-monads.html"'
+pageUrl: '"http://marcosh.github.io/post/2025/03/10/combining-monads.html"'
 pageIdentifier: '"Combining monads with natural transformations"'
 description: "Combining monads with natural transformations"
 image: "/img/natural-transformation-condition.png"
