@@ -116,7 +116,7 @@ We might want to hide these functions away from our domain code behind a nice lo
 data UserRepository m = UserRepository
   { retrieveAllUsers :: m [User]
   , retrieveUserById :: UserId -> m (Maybe User)
-  , addUser :: User -> DB UserId
+  , addUser :: User -> m UserId
   , editUserName :: UserId -> UserName -> m ()
   , editUserBirthday :: UserId -> Birthday -> m ()
   , removeUser :: UserId -> m ()
@@ -195,6 +195,8 @@ Decoupling allows us to develop components in isolation, focusing on their speci
 
 What we described in this post is a standard pattern to decouple our domain code from its dependencies, which too often lead us to cripple our code with decisions we didn't make. Using this pattern allows us to keep our domain code cleaner and easier to maintain. The pattern has a price in terms of number of modules and layers you have to use, but it certainly worth it, especially for more complex projects.
 
+<br>
+
 ---
 
-[^1]: There are several says we could use to declare an interface. I plan to write my next post exactly on this topic.
+[^1]: There are several says we could use to declare an interface. See [this other post]({% post_url 2025-07-22-four-ways-of-declaring-interfaces-in-haskell %}).
