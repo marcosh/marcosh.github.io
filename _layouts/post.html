@@ -15,8 +15,4 @@ pageIdentifier: 'home'
     {{ content }}
   </div>
 
-  {% if page.comments %}
-    {% include disqus.html pageUrl=page.pageUrl pageIdentifier=page.pageIdentifier %}
-  {% endif %}
-
 </article>
