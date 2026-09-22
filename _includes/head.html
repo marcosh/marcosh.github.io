@@ -24,12 +24,16 @@
   <meta property="og:description" content="{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 155 }}{% else %}{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 155 }}{% else %}{{ site.description }}{% endif %}{% endif %}" />
   <meta property="og:site_name" content="Marcoshplace" />
 
+  <meta property="fediverse:creator" content="@marcosh@functional.cafe" />
+
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
   <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">
+
+  <link rel="human-json" href="/docs/human.json">
 
   <script src="https://unpkg.com/mermaid@8.3.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
